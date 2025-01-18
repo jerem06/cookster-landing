@@ -30,9 +30,9 @@ const HomePage: React.FC = () => {
   ];
 
   return (
-    <section className="container mx-auto px-4 py-12 mt-16">
+    <section id="home" className="container mx-auto px-14 py-12 mt-16">
       <div className="flex flex-col md:flex-row gap-8">
-        <div className="flex-1">
+        <div className="flex-1 ">
           <div className="h-full flex flex-col justify-around">
             <div>
               <h1 className="text-6xl font-bold mb-4">
@@ -40,7 +40,7 @@ const HomePage: React.FC = () => {
                 <span className="gradient-text">Cookster</span> s&apos;occupe du
                 reste.
               </h1>
-              <h2 className="text-4xl mb-6">
+              <h2 className="text-4xl mb-6 max-w-2xl">
                 Centralisez vos recettes, planifiez vos repas, et simplifiez vos
                 courses en un clic.
               </h2>

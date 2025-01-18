@@ -6,30 +6,63 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+const faqItems: FAQItem[] = [
+  {
+    question: "Qu'est-ce que Cookster ?",
+    answer:
+      "Cookster est une application innovante qui vous permet de centraliser vos recettes, d'en découvrir de nouvelles, de planifier vos repas hebdomadaires, et de générer automatiquement votre liste de courses. Elle s'adresse à tous ceux qui veulent reprendre le contrôle de leur alimentation en toute simplicité.",
+  },
+  {
+    question: "Cookster est-elle gratuite ?",
+    answer:
+      "L'application propose une version gratuite avec des fonctionnalités de base. Pour accéder à des options avancées, comme la planification des repas personnalisée, le suivi des macros ou les recommandations d'IA, un abonnement premium est disponible.",
+  },
+  {
+    question: "Sur quels appareils puis-je utiliser Cookster ?",
+    answer: "Cookster est disponible sur Android, iOS.",
+  },
+  {
+    question:
+      "Est-ce que Cookster propose des recettes végétariennes, sans gluten, ou veganes ?",
+    answer:
+      "Oui, Cookster propose une large variété de recettes adaptées à différents régimes alimentaires. Vous pouvez filtrer les recettes selon vos besoins (végétarien, sans gluten, vegan, sans lactose, etc.).",
+  },
+  {
+    question:
+      "Est-ce que Cookster garantit la sécurité et la confidentialité de mes recettes personnelles ?",
+    answer:
+      "Oui, votre sécurité et confidentialité sont une priorité. Vos recettes privées ne seront accessibles qu'à vous, à moins que vous choisissiez de les partager. Toutes les données sont protégées par des standards de sécurité élevés.",
+  },
+  {
+    question:
+      "Comment puis-je contacter le support client de Cookster en cas de problème ?",
+    answer:
+      "Vous pouvez contacter notre support client directement via l'application, dans l'onglet \"Assistance\". Une équipe dédiée est disponible pour répondre à vos questions et résoudre vos problèmes dans les plus brefs délais.",
+  },
+];
+
 const FAQ: React.FC = () => {
   return (
-    <section className="h-screen max-w-screen-md mx-auto justify-center items-center flex">
+    <section
+      id="faq"
+      className="h-screen max-w-screen-md mx-auto justify-center items-center flex"
+    >
       <Accordion type="single" collapsible className="w-full">
-        <AccordionItem value="item-1">
-          <AccordionTrigger>Is it accessible?</AccordionTrigger>
-          <AccordionContent>
-            Yes. It adheres to the WAI-ARIA design pattern.
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="item-2">
-          <AccordionTrigger>Is it styled?</AccordionTrigger>
-          <AccordionContent>
-            Yes. It comes with default styles that matches the other
-            components&apos; aesthetic.
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="item-3">
-          <AccordionTrigger>Is it animated?</AccordionTrigger>
-          <AccordionContent>
-            Yes. It&apos;s animated by default, but you can disable it if you
-            prefer.
-          </AccordionContent>
-        </AccordionItem>
+        {faqItems.map((item, index) => (
+          <AccordionItem key={`item-${index + 1}`} value={`item-${index + 1}`}>
+            <AccordionTrigger className="text-2xl font-semibold">
+              {item.question}
+            </AccordionTrigger>
+            <AccordionContent className="text-lg">
+              {item.answer}
+            </AccordionContent>
+          </AccordionItem>
+        ))}
       </Accordion>
     </section>
   );

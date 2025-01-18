@@ -55,7 +55,7 @@ const FeaturesPage: React.FC = () => {
   }, [scrollYProgress]);
 
   return (
-    <section className="relative" ref={containerRef}>
+    <section id="features" className="relative" ref={containerRef}>
       {/* Fixed phone container */}
       <div className="sticky top-0 left-0 w-full h-screen flex items-center">
         <div className="container flex h-full mx-auto px-4">

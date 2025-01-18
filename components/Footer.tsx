@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
@@ -11,71 +13,68 @@ export function Footer() {
           <div className="space-y-4">
             <Link href="/" className="flex items-center space-x-2">
               <span className="text-2xl">🚀</span>
-              <span className="font-semibold">BrandName</span>
+              <span className="font-semibold">Cookster</span>
             </Link>
             <p className="text-sm text-muted-foreground">
-              Making the world a better place through constructing elegant
-              hierarchies.
+              Simplifiez la cuisine, améliorez votre quotidien.
             </p>
           </div>
 
-          {/* Resources Column */}
           <div>
-            <h3 className="font-semibold mb-4">Resources</h3>
+            <h3 className="font-semibold mb-4">Explorer</h3>
             <ul className="space-y-2">
               <li>
                 <Link
-                  href="/docs"
+                  href="/"
                   className="text-sm text-muted-foreground hover:text-primary"
                 >
-                  Documentation
+                  A propos
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/guides"
+                  href="/"
                   className="text-sm text-muted-foreground hover:text-primary"
                 >
-                  Guides
+                  Recettes
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/api"
+                  href="/"
                   className="text-sm text-muted-foreground hover:text-primary"
                 >
-                  API Reference
+                  Articles
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Company Column */}
           <div>
-            <h3 className="font-semibold mb-4">Company</h3>
+            <h3 className="font-semibold mb-4">Applications</h3>
             <ul className="space-y-2">
               <li>
                 <Link
-                  href="/about"
+                  href="/"
                   className="text-sm text-muted-foreground hover:text-primary"
                 >
-                  About Us
+                  Apple Store
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/careers"
+                  href="/"
                   className="text-sm text-muted-foreground hover:text-primary"
                 >
-                  Careers
+                  Google Play
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/contact"
+                  href="/"
                   className="text-sm text-muted-foreground hover:text-primary"
                 >
-                  Contact
+                  Application Web
                 </Link>
               </li>
             </ul>
@@ -83,15 +82,15 @@ export function Footer() {
 
           {/* Newsletter Column */}
           <div className="space-y-4">
-            <h3 className="font-semibold">Stay up to date</h3>
+            <h3 className="font-semibold">Recevez les dernières nouvelles</h3>
             <form className="flex gap-2">
               <input
                 type="email"
-                placeholder="Enter your email"
+                placeholder="Entrez votre email"
                 className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background"
               />
               <Button type="submit" size="sm">
-                Subscribe
+                S&apos;abonner
               </Button>
             </form>
           </div>
@@ -100,20 +99,20 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row justify-between items-center border-t mt-12 pt-8">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} BrandName. All rights reserved.
+            © {new Date().getFullYear()} Cookster. All rights reserved.
           </p>
           <div className="flex gap-4 mt-4 md:mt-0">
             <Link
               href="/privacy"
               className="text-sm text-muted-foreground hover:text-primary"
             >
-              Privacy Policy
+              Politique de confidentialité
             </Link>
             <Link
               href="/terms"
               className="text-sm text-muted-foreground hover:text-primary"
             >
-              Terms of Service
+              Conditions d&apos;utilisation
             </Link>
           </div>
         </div>

@@ -104,7 +104,10 @@ const ReviewCard = ({
 
 const TestimonialsPage: React.FC = () => {
   return (
-    <section className="flex flex-col h-screen justify-center">
+    <section
+      id="testimonials"
+      className="flex flex-col h-screen justify-center"
+    >
       <div className="relative flex flex-col w-full items-center justify-center overflow-hidden">
         <Marquee pauseOnHover className="[--duration:30s]">
           {firstRow.map((review) => (
