@@ -1,59 +1,69 @@
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Marquee from "@/components/ui/marquee";
 
 export const reviews = [
   {
     id: 1,
-    name: "Sophie",
-    username: "Stage MBSR",
-    body: "J'ai participé aux stages MBSR et Auto-compassion",
-  },
-  {
-    id: 5,
-    name: "Sylvaine",
-    username: "Stage autocompassion",
-    body: `Je recommande vivement ce stage.`,
-  },
-  {
-    id: 6,
-    name: "Melissa",
-    username: "Stage autocompassion",
-    body: "Je la recommande vivement..",
+    name: "Marie D.",
+    username: "Planification des repas",
+    body: "Cookster a transformé ma façon de planifier mes repas. J'économise du temps et mes menus sont plus équilibrés !",
+    avatar: "https://api.dicebear.com/7.x/personas/svg?seed=Marie",
   },
   {
     id: 2,
-    name: "Lucas",
-    username: "Perte de poids",
-    body: "Je me sens mieux dans ma peau et plus en confiance.",
+    name: "Thibault L.",
+    username: "Liste de courses",
+    body: "La liste de courses automatique est géniale. Plus besoin de me casser la tête, tout est prêt en quelques clics !",
+    avatar: "https://api.dicebear.com/7.x/personas/svg?seed=Thibault",
   },
   {
-    id: 13,
-    name: "Martin",
-    username: "Arrêt du tabac",
-    body: "Grâce à un soutien empathique.",
+    id: 3,
+    name: "Sophie M.",
+    username: "Découverte culinaire",
+    body: "Les recettes sont variées et faciles à suivre. J'ai découvert plein de nouvelles saveurs vegan !",
+    avatar: "https://api.dicebear.com/7.x/personas/svg?seed=Sophie",
+  },
+  {
+    id: 4,
+    name: "Lucas V.",
+    username: "Suivi nutritionnel",
+    body: "Le suivi des macros m'aide à atteindre mes objectifs fitness tout en me régalant.",
+    avatar: "https://api.dicebear.com/7.x/personas/svg?seed=Lucas",
+  },
+  {
+    id: 5,
+    name: "Claire T.",
+    username: "Organisation familiale",
+    body: "Un vrai gain de temps pour gérer les repas de toute la famille. La planification est super simple !",
+    avatar: "https://api.dicebear.com/7.x/personas/svg?seed=Claire",
+  },
+  {
+    id: 6,
+    name: "Julien B.",
+    username: "Débutant en cuisine",
+    body: "Une app simple et intuitive, parfaite pour les débutants comme moi !",
+    avatar: "https://api.dicebear.com/7.x/personas/svg?seed=Julien",
   },
   {
     id: 7,
-    name: "Julia",
-    username: "Traitement des phobies",
-    body: "Un immense merci pour ce soutien précieux !",
-  },
-  {
-    id: 16,
-    name: "Olivier",
-    username: "Stage autocompassion",
-    body: "le lieu du vrai bonheur. Merci, Laure !",
+    name: "Anaïs G.",
+    username: "Partage de recettes",
+    body: "J'adore pouvoir partager mes recettes avec ma famille. L'option traduction est un vrai plus !",
+    avatar: "https://api.dicebear.com/7.x/personas/svg?seed=Anais",
   },
   {
     id: 8,
-    name: "Jordan",
-    username: "Confiance en soi",
-    body: "Je recommande vivement cette expérience.",
+    name: "Marc P.",
+    username: "Alimentation saine",
+    body: "Grâce à Cookster, je mange plus sainement et je gère mieux mes repas au quotidien.",
+    avatar: "https://api.dicebear.com/7.x/personas/svg?seed=Marc",
   },
   {
     id: 9,
-    name: "Alice",
-    username: "Hypnose",
-    body: "C'est une expérience transformante !",
+    name: "Élodie C.",
+    username: "Régimes spéciaux",
+    body: "Parfait pour gérer mes recettes sans gluten. Les menus hebdomadaires sont super pratiques !",
+    avatar: "https://api.dicebear.com/7.x/personas/svg?seed=Elodie",
   },
 ];
 
@@ -64,16 +74,20 @@ const ReviewCard = ({
   name,
   username,
   body,
+  avatar,
 }: {
   name: string;
   username: string;
   body: string;
-  id: number;
+  avatar: string;
 }) => {
   return (
-    <div className="flex flex-col gap-4 h-[150px] rounded-2xl border border-zinc-200 p-6 dark:border-zinc-800 mx-4 my-2 w-[300px] bg-white dark:bg-zinc-900">
+    <div className="flex flex-col gap-4 h-[200px] rounded-2xl border border-zinc-200 p-6 dark:border-zinc-800 mx-4 my-2 w-[300px] bg-white dark:bg-zinc-900">
       <div className="flex items-center gap-4">
-        {/*  <Avatar id={name} width={40} height={40} /> */}
+        <Avatar className="bg-primary">
+          <AvatarImage src={avatar} />
+          <AvatarFallback>{name.charAt(0)}</AvatarFallback>
+        </Avatar>
         <div>
           <div className="font-medium text-zinc-900 dark:text-zinc-100">
             {name}

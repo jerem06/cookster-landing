@@ -3,6 +3,7 @@ import HomePage from "./components/HomePage";
 import FeaturesPage from "./components/FeaturesPage";
 import TestimonialsPage from "./components/TestimonialsPage";
 import FAQ from "./components/FAQ";
+import ConvertSection from "./components/ConvertSection";
 
 const MainPage: React.FC = () => {
   return (
@@ -10,6 +11,7 @@ const MainPage: React.FC = () => {
       <HomePage />
       <FeaturesPage />
       <TestimonialsPage />
+      <ConvertSection />
       <FAQ />
     </div>
   );

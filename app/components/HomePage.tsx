@@ -1,36 +1,31 @@
 import Iphone15Pro from "@/components/ui/iphone-15-pro";
 import React from "react";
-import Image from "next/image";
+
 import google from "@/app/assets/images/google-black.png";
 import apple from "@/app/assets/icons/apple-black.svg";
 import AvatarCircles from "@/components/ui/avatar-circles";
 import { StarIcon } from "@heroicons/react/20/solid";
+import StoreNotificationDialog from "@/components/store-notification-dialog";
 
 const HomePage: React.FC = () => {
   const avatars = [
     {
-      imageUrl: "https://avatars.githubusercontent.com/u/16860528",
-      profileUrl: "https://github.com/dillionverma",
+      imageUrl: "https://api.dicebear.com/7.x/personas/svg?seed=felix",
     },
     {
-      imageUrl: "https://avatars.githubusercontent.com/u/20110627",
-      profileUrl: "https://github.com/tomonarifeehan",
+      imageUrl: "https://api.dicebear.com/7.x/personas/svg?seed=aneka",
     },
     {
-      imageUrl: "https://avatars.githubusercontent.com/u/106103625",
-      profileUrl: "https://github.com/BankkRoll",
+      imageUrl: "https://api.dicebear.com/7.x/personas/svg?seed=bella",
     },
     {
-      imageUrl: "https://avatars.githubusercontent.com/u/59228569",
-      profileUrl: "https://github.com/safethecode",
+      imageUrl: "https://api.dicebear.com/7.x/personas/svg?seed=charlie",
     },
     {
-      imageUrl: "https://avatars.githubusercontent.com/u/59442788",
-      profileUrl: "https://github.com/sanjay-mali",
+      imageUrl: "https://api.dicebear.com/7.x/personas/svg?seed=david",
     },
     {
-      imageUrl: "https://avatars.githubusercontent.com/u/89768406",
-      profileUrl: "https://github.com/itsarghyadas",
+      imageUrl: "https://api.dicebear.com/7.x/personas/svg?seed=emma",
     },
   ];
 
@@ -53,24 +48,16 @@ const HomePage: React.FC = () => {
 
             <div className="space-y-6">
               <div className="flex gap-8">
-                <button className="relative h-14 w-[180px]">
-                  <Image
-                    src={apple}
-                    alt="Télécharger sur l'App Store"
-                    fill
-                    priority
-                    style={{ objectFit: "contain" }}
-                  />
-                </button>
-                <button className="relative h-14 w-[180px]">
-                  <Image
-                    src={google}
-                    alt="Disponible sur Google Play"
-                    fill
-                    priority
-                    style={{ objectFit: "contain" }}
-                  />
-                </button>
+                <StoreNotificationDialog
+                  storeName="App Store"
+                  storeImage={apple}
+                  imageAlt="Télécharger sur l'App Store"
+                />
+                <StoreNotificationDialog
+                  storeName="Google Play"
+                  storeImage={google}
+                  imageAlt="Disponible sur Google Play"
+                />
               </div>
 
               <div className="gap-6 flex flex-row items-center">
@@ -86,7 +73,7 @@ const HomePage: React.FC = () => {
                     <span className="ml-2 text-gray-700 font-medium">4.9</span>
                   </div>
                   <p className="mt-2 text-gray-600">
-                    Rejoignez plus de 45 cuisiniers passionnés
+                    Rejoignez plus de 45 utilisateurs
                   </p>
                 </div>
               </div>

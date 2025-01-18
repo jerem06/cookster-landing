@@ -14,19 +14,21 @@ type FeatureContent = {
 
 const features: FeatureContent[] = [
   {
-    title: "Feature One",
+    title: "Votre livre de recettes digital.",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos...",
+      "Stockez toutes vos recettes au même endroit, personnalisez-les, et retrouvez-les facilement grâce à un système de recherche intuitif.",
     image: "https://via.placeholder.com/430x880",
   },
   {
-    title: "Feature Two",
-    description: "Second feature description goes here...",
+    title: "Des recettes adaptées à vos envies",
+    description:
+      "Découvrez des recettes équilibrées, gluten-free, vegan ou personnalisées à votre régime alimentaire, tout en gardant le plaisir de cuisiner.",
     image: "https://picsum.photos/430/880",
   },
   {
-    title: "Feature Three",
-    description: "Third feature description goes here...",
+    title: "Gagnez du temps avec votre liste de courses (Bientôt disponible)",
+    description:
+      "Convertissez vos recettes en liste de courses instantanée et évitez les oublis grâce à une organisation optimisée.",
     image: "https://via.placeholder.com/430x880",
   },
 ];
@@ -35,7 +37,7 @@ const FeaturesPage: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start start", "end center"],
+    offset: ["start start", "end end"],
   });
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -56,24 +58,30 @@ const FeaturesPage: React.FC = () => {
     <section className="relative" ref={containerRef}>
       {/* Fixed phone container */}
       <div className="sticky top-0 left-0 w-full h-screen flex items-center">
-        <div className="container mx-auto px-4">
-          <div className="flex justify-start pl-24">
-            <Iphone15Pro
-              className="size-1/4"
-              src={features[currentImageIndex].image}
-            />
+        <div className="container flex h-full mx-auto px-4">
+          <div className="flex flex-1 justify-center pt-10 items-center h-full">
+            <div className="flex bg justify-end w-full pr-24">
+              <Iphone15Pro
+                className="size-7/12"
+                src={features[currentImageIndex].image}
+              />
+            </div>
           </div>
+          <div className="flex flex-1"></div>
         </div>
       </div>
 
-      {/* Scrollable content sections - removed relative positioning */}
-      <div className="relative">
+      {/* Scrollable content sections */}
+      <div className="relative" style={{ marginTop: "-100vh" }}>
         {features.map((feature, index) => (
           <div key={index} className={twMerge("flex items-center h-screen")}>
-            <div className="container mx-auto px-4">
-              <div className="flex flex-col gap-4 max-w-xl ml-auto">
-                <h2 className="text-2xl font-bold">{feature.title}</h2>
-                <p className="text-gray-600">{feature.description}</p>
+            <div className="container flex mx-auto px-4">
+              <div className="flex-1"></div>
+              <div className="flex flex-1 flex-col gap-4 ml-auto">
+                <h2 className="text-4xl font-bold max-w-md">{feature.title}</h2>
+                <p className="text-gray-600 text-2xl max-w-md">
+                  {feature.description}
+                </p>
               </div>
             </div>
           </div>

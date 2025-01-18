@@ -64,7 +64,7 @@ export function Navbar() {
         <div className="flex items-center">
           <Link href="/" className="flex items-center space-x-2">
             <span className="text-2xl font-bold">🚀</span>
-            <span className="font-semibold">BrandName</span>
+            <span className="font-semibold">Cookster</span>
           </Link>
         </div>
 
