@@ -10,6 +10,9 @@ import {
   AlertDialogCancel,
 } from "@/components/ui/alert-dialog";
 import Image, { StaticImageData } from "next/image";
+import ReCAPTCHA from "react-google-recaptcha";
+import { useRef, useState } from "react";
+import { useNewsletterSubscription } from "@/services/api/useNewsletter";
 
 interface StoreNotificationDialogProps {
   storeName: "App Store" | "Google Play";
@@ -22,15 +25,34 @@ const StoreNotificationDialog = ({
   storeImage,
   imageAlt,
 }: StoreNotificationDialogProps) => {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const [open, setOpen] = useState(false);
+  const { mutate: subscribeToNewsletter } = useNewsletterSubscription({
+    onSuccess: () => {
+      setOpen(false);
+      setEmail("");
+      setShowCaptcha(false);
+    },
+  });
+  const [showCaptcha, setShowCaptcha] = useState(false);
+  const [email, setEmail] = useState("");
+
+  const handleEmailSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const email = formData.get("email");
-    console.log("Email submitted:", email);
+    const emailValue = formData.get("email") as string;
+    setEmail(emailValue);
+    setShowCaptcha(true);
+  };
+
+  const handleCaptchaChange = (token: string | null) => {
+    if (token) {
+      subscribeToNewsletter({ email, recaptchaToken: token });
+    }
   };
 
   return (
-    <AlertDialog>
+    <AlertDialog open={open} onOpenChange={setOpen}>
       <AlertDialogTrigger asChild>
         <button className="relative h-14 w-[180px]">
           <Image
@@ -50,7 +72,7 @@ const StoreNotificationDialog = ({
             l&apos;application sera disponible sur {storeName}.
           </AlertDialogDescription>
         </AlertDialogHeader>
-        <form onSubmit={handleSubmit} className="mt-4 space-y-4">
+        <form onSubmit={handleEmailSubmit} className="mt-4 space-y-4">
           <input
             type="email"
             name="email"
@@ -58,13 +80,26 @@ const StoreNotificationDialog = ({
             required
             className="w-full px-3 py-2 border rounded-md"
           />
-          <div className="flex gap-3">
-            <AlertDialogCancel className="flex-1">Annuler</AlertDialogCancel>
+          {showCaptcha && (
+            <ReCAPTCHA
+              ref={recaptchaRef}
+              sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+              size="normal"
+              onChange={handleCaptchaChange}
+            />
+          )}
+          <div className="flex gap-3 items-center">
+            <AlertDialogCancel
+              className="flex-1"
+              onClick={() => setShowCaptcha(false)}
+            >
+              Annuler
+            </AlertDialogCancel>
             <button
               type="submit"
               className="flex-1 bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800"
             >
-              M&apos;avertir du lancement
+              Suivant
             </button>
           </div>
         </form>

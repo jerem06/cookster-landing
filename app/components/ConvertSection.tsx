@@ -11,7 +11,7 @@ const ConvertSection: React.FC = () => {
       className="flex flex-col justify-center items-center my-32 text-center"
     >
       <h3 className="text-2xl font-semibold mb-4">
-        L’app qui change tout en cuisine
+        L’app qui change TOUT en cuisine
       </h3>
       <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
         Planifiez vos repas, gérez vos courses et découvrez des recettes

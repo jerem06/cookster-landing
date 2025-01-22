@@ -79,9 +79,9 @@ const FeaturesPage: React.FC = () => {
               <div className="flex-1"></div>
               <div className="flex flex-1 flex-col gap-4 ml-auto">
                 <h2 className="text-4xl font-bold max-w-md">{feature.title}</h2>
-                <p className="text-gray-600 text-2xl max-w-md">
+                <h3 className="text-gray-600 text-2xl max-w-md">
                   {feature.description}
-                </p>
+                </h3>
               </div>
             </div>
           </div>

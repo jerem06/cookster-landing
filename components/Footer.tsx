@@ -2,8 +2,33 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { useState, useRef } from "react";
+import { useNewsletterSubscription } from "@/services/api/useNewsletter";
+import ReCAPTCHA from "react-google-recaptcha";
 
 export function Footer() {
+  const [email, setEmail] = useState("");
+  const [showCaptcha, setShowCaptcha] = useState(false);
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
+
+  const { mutate: subscribeToNewsletter } = useNewsletterSubscription({
+    onSuccess: () => {
+      setEmail("");
+      setShowCaptcha(false);
+    },
+  });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setShowCaptcha(true);
+  };
+
+  const handleCaptchaChange = async (token: string | null) => {
+    if (token) {
+      subscribeToNewsletter({ email, recaptchaToken: token });
+    }
+  };
+
   return (
     <footer className="border-t bg-background">
       <div className="container px-4 py-12 mx-auto">
@@ -83,16 +108,26 @@ export function Footer() {
           {/* Newsletter Column */}
           <div className="space-y-4">
             <h3 className="font-semibold">Recevez les dernières nouvelles</h3>
-            <form className="flex gap-2">
+            <form className="flex gap-2 items-center" onSubmit={handleSubmit}>
               <input
                 type="email"
                 placeholder="Entrez votre email"
                 className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
               />
               <Button type="submit" size="sm">
                 S&apos;abonner
               </Button>
             </form>
+            {showCaptcha && (
+              <ReCAPTCHA
+                ref={recaptchaRef}
+                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+                onChange={handleCaptchaChange}
+              />
+            )}
           </div>
         </div>
 
