@@ -24,9 +24,6 @@ const HomePage: React.FC = () => {
     {
       imageUrl: "https://api.dicebear.com/7.x/personas/svg?seed=david",
     },
-    {
-      imageUrl: "https://api.dicebear.com/7.x/personas/svg?seed=emma",
-    },
   ];
 
   return (
@@ -47,34 +44,35 @@ const HomePage: React.FC = () => {
             </div>
 
             <div className="space-y-6">
-              <div className="flex gap-8">
-                <StoreNotificationDialog
-                  storeName="App Store"
-                  storeImage={apple}
-                  imageAlt="Télécharger sur l'App Store"
-                />
-                <StoreNotificationDialog
-                  storeName="Google Play"
-                  storeImage={google}
-                  imageAlt="Disponible sur Google Play"
-                />
-              </div>
+              <div className="flex flex-col gap-6">
+                <div className="flex gap-8 justify-center lg:justify-normal order-2 md:order-1">
+                  <StoreNotificationDialog
+                    storeName="App Store"
+                    storeImage={apple}
+                    imageAlt="Télécharger sur l'App Store"
+                  />
+                  <StoreNotificationDialog
+                    storeName="Google Play"
+                    storeImage={google}
+                    imageAlt="Disponible sur Google Play"
+                  />
+                </div>
 
-              <div className="gap-6 flex flex-row items-center">
-                <AvatarCircles avatarUrls={avatars} numPeople={99} />
-                <div>
-                  <div className="flex items-center">
-                    {[...Array(5)].map((_, index) => (
-                      <StarIcon
-                        key={index}
-                        className="h-5 w-5 text-yellow-400"
-                      />
-                    ))}
-                    <span className="ml-2 text-gray-700 font-medium">4.9</span>
+                <div className="gap-6 flex flex-col md:flex-row items-center order-1 md:order-2">
+                  <AvatarCircles avatarUrls={avatars} numPeople={10} />
+                  <div>
+                    <div className="flex items-center">
+                      {[...Array(5)].map((_, index) => (
+                        <StarIcon
+                          key={index}
+                          className="h-5 w-5 text-yellow-400"
+                        />
+                      ))}
+                    </div>
+                    <p className="mt-2 text-gray-600">
+                      10+ utilisateurs cuisinent avec Cookster
+                    </p>
                   </div>
-                  <p className="mt-2 text-gray-600">
-                    Rejoignez plus de 45 utilisateurs
-                  </p>
                 </div>
               </div>
             </div>

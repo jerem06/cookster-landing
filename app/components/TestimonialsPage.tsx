@@ -1,5 +1,8 @@
+"use client";
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Marquee from "@/components/ui/marquee";
+import { useGetUserCount } from "@/services/api/useGetUserCount";
 
 export const reviews = [
   {
@@ -103,11 +106,22 @@ const ReviewCard = ({
 };
 
 const TestimonialsPage: React.FC = () => {
+  const { data: userCount = 10 } = useGetUserCount();
   return (
     <section
       id="testimonials"
-      className="flex flex-col h-screen justify-center"
+      className="flex flex-col lg:h-screen justify-center"
     >
+      <div className="text-center mb-16 space-y-4">
+        <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100">
+          <span className="gradient-text">{userCount}</span> utilisateurs
+          utilsent Cookster quotidiennement
+        </h2>
+        <h3 className="text-xl font-semibold text-gray-600">
+          Ce qu&apos;ils disent de Cookster
+        </h3>
+      </div>
+
       <div className="relative flex flex-col w-full items-center justify-center overflow-hidden">
         <Marquee pauseOnHover className="[--duration:30s]">
           {firstRow.map((review) => (

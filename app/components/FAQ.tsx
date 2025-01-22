@@ -34,12 +34,6 @@ const faqItems: FAQItem[] = [
   },
   {
     question:
-      "Est-ce que Cookster garantit la sécurité et la confidentialité de mes recettes personnelles ?",
-    answer:
-      "Oui, votre sécurité et confidentialité sont une priorité. Vos recettes privées ne seront accessibles qu'à vous, à moins que vous choisissiez de les partager. Toutes les données sont protégées par des standards de sécurité élevés.",
-  },
-  {
-    question:
       "Comment puis-je contacter le support client de Cookster en cas de problème ?",
     answer:
       "Vous pouvez contacter notre support client directement via l'application, dans l'onglet \"Assistance\". Une équipe dédiée est disponible pour répondre à vos questions et résoudre vos problèmes dans les plus brefs délais.",
@@ -50,7 +44,7 @@ const FAQ: React.FC = () => {
   return (
     <section
       id="faq"
-      className="h-screen max-w-screen-md mx-auto justify-center items-center flex"
+      className="lg:h-screen max-w-lg lg:max-w-screen-md  mx-12 sm:mx-auto justify-center items-center flex"
     >
       <Accordion type="single" collapsible className="w-full">
         {faqItems.map((item, index) => (

@@ -7,7 +7,7 @@ import ConvertSection from "./components/ConvertSection";
 
 const MainPage: React.FC = () => {
   return (
-    <div>
+    <div className="space-y-20">
       <HomePage />
       <FeaturesPage />
       <TestimonialsPage />
