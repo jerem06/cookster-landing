@@ -2,6 +2,7 @@
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Marquee from "@/components/ui/marquee";
+import { NumberTicker } from "@/components/ui/number-ticker";
 import { useGetUserCount } from "@/services/api/useGetUserCount";
 
 export const reviews = [
@@ -113,9 +114,12 @@ const TestimonialsPage: React.FC = () => {
       className="flex flex-col lg:h-screen justify-center"
     >
       <div className="text-center mb-16 space-y-4">
-        <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100">
-          <span className="gradient-text">{userCount}</span> utilisateurs
-          utilsent Cookster quotidiennement
+        <h2 className="text-3xl font-semibold text-zinc-900 dark:text-zinc-100">
+          <NumberTicker
+            value={userCount}
+            className=" text-4xl font-bold text-primary"
+          />{" "}
+          utilisateurs utilsent Cookster quotidiennement
         </h2>
         <h3 className="text-xl font-semibold text-gray-600">
           Ce qu&apos;ils disent de Cookster

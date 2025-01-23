@@ -4,6 +4,7 @@ import google from "@/app/assets/images/google-black.png";
 import apple from "@/app/assets/icons/apple-black.svg";
 import StoreNotificationDialog from "@/components/store-notification-dialog";
 import Image from "next/image";
+import { SparklesText } from "@/components/ui/sparkles-text";
 
 const ConvertSection: React.FC = () => {
   return (
@@ -11,8 +12,9 @@ const ConvertSection: React.FC = () => {
       id="convert"
       className="flex flex-col justify-center items-center mt-16 text-center mx-12 md:mx-0"
     >
-      <h3 className="text-4xl font-semibold mb-4">
-        L’app qui change <span className="gradient-text">TOUT</span> en cuisine
+      <h3 className="text-4xl font-semibold mb-4 ">
+        L’app qui change <SparklesText className="lg:my-1" text="TOUT" /> en
+        cuisine
       </h3>
       <p className="text-gray-600 mb-8 max-w-lg mx-auto">
         Planifiez vos repas, gérez vos courses et découvrez des recettes

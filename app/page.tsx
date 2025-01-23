@@ -4,6 +4,7 @@ import FeaturesPage from "./components/FeaturesPage";
 import TestimonialsPage from "./components/TestimonialsPage";
 import FAQ from "./components/FAQ";
 import ConvertSection from "./components/ConvertSection";
+import PricingPage from "./components/PricingPage";
 
 const MainPage: React.FC = () => {
   return (
@@ -11,6 +12,7 @@ const MainPage: React.FC = () => {
       <HomePage />
       <FeaturesPage />
       <TestimonialsPage />
+      <PricingPage />
       <ConvertSection />
       <FAQ />
     </div>
