@@ -69,7 +69,7 @@ const FeaturesPage: React.FC = () => {
   return (
     <section
       id="features"
-      className="relative mt-12 md:mt-0"
+      className="relative mt-12 md:mt-0 bg-white"
       ref={containerRef}
     >
       {/* Fixed phone container */}

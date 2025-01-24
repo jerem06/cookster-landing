@@ -10,7 +10,7 @@ const ConvertSection: React.FC = () => {
   return (
     <section
       id="convert"
-      className="flex flex-col justify-center items-center mt-16 text-center mx-12 md:mx-0"
+      className="flex bg-white flex-col justify-center items-center py-10 lg:py-0 lg:h-screen text-center px-12 md:mx-0"
     >
       <h3 className="text-4xl font-semibold mb-4 ">
         L’app qui change <SparklesText className="lg:my-1" text="TOUT" /> en

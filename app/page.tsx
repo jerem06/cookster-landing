@@ -5,6 +5,7 @@ import TestimonialsPage from "./components/TestimonialsPage";
 import FAQ from "./components/FAQ";
 import ConvertSection from "./components/ConvertSection";
 import PricingPage from "./components/PricingPage";
+import TeamPage from "./components/TeamPage";
 
 const MainPage: React.FC = () => {
   return (
@@ -12,6 +13,7 @@ const MainPage: React.FC = () => {
       <HomePage />
       <FeaturesPage />
       <TestimonialsPage />
+      <TeamPage />
       <PricingPage />
       <ConvertSection />
       <FAQ />
