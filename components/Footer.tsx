@@ -32,7 +32,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="border-t bg-background">
+    <footer id="footer" className="border-t bg-background">
       <div className="container px-4 py-12 mx-auto">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
@@ -55,30 +55,30 @@ export function Footer() {
           <div>
             <h3 className="font-semibold mb-4">Explorer</h3>
             <ul className="space-y-2">
-              <li>
+              {/*  <li>
                 <Link
                   href="/"
                   className="text-sm text-muted-foreground hover:text-primary"
                 >
                   A propos
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link
-                  href="/"
+                  href="/recipes"
                   className="text-sm text-muted-foreground hover:text-primary"
                 >
                   Recettes
                 </Link>
               </li>
-              <li>
+              {/*  <li>
                 <Link
                   href="/"
                   className="text-sm text-muted-foreground hover:text-primary"
                 >
                   Articles
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
 
@@ -101,14 +101,14 @@ export function Footer() {
                   Google Play
                 </Link>
               </li>
-              <li>
+              {/*  <li>
                 <Link
                   href="/"
                   className="text-sm text-muted-foreground hover:text-primary"
                 >
                   Application Web
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
 

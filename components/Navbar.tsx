@@ -41,6 +41,11 @@ const ListItem = React.forwardRef<
 ListItem.displayName = "ListItem";
 
 export function Navbar() {
+  const scrollToFooter = () => {
+    const footer = document.querySelector("footer");
+    footer?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <div className="border-b fixed top-0 left-0 right-0 z-50 bg-background">
       <div className="flex h-16 items-center px-4 justify-between">
@@ -69,7 +74,7 @@ export function Navbar() {
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
-          <Button>Se connecter</Button>
+          <Button onClick={scrollToFooter}>S&apos;abonner</Button>
         </div>
       </div>
     </div>
