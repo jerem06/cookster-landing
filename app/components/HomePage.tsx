@@ -1,3 +1,4 @@
+"use client";
 import Iphone15Pro from "@/components/ui/iphone-15-pro";
 import React from "react";
 
