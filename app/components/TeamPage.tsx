@@ -1,5 +1,8 @@
 import React from "react";
 import Image from "next/image";
+import laCuisineDuJ from "@/app/assets/images/laCuisineDuJ.jpg";
+import placeholder1 from "@/app/assets/images/placeholderChef1.jpg";
+import placeholder2 from "@/app/assets/images/placeholderChef2.jpg";
 
 interface TeamMember {
   name: string;
@@ -11,27 +14,27 @@ const teamMembers: TeamMember[] = [
   {
     name: "Jean Bon",
     role: "Peut être vous ?",
-    image: "/team/john.jpg",
+    image: placeholder1.src,
   },
   {
     name: "LaCuisineDuJ",
     role: `"Moins de gluten plus de fun."`,
-    image: "https://picsum.photos/200/300",
+    image: laCuisineDuJ.src,
   },
   {
     name: "Anna Nass",
     role: "Peut être vous ?",
-    image: "/team/mike.jpg",
+    image: placeholder2.src,
   },
   {
     name: "Sam Oussa",
     role: "Peut être vous ?",
-    image: "/team/sarah.jpg",
+    image: placeholder1.src,
   },
   {
     name: "Léa Zagne",
     role: "Peut être vous ?",
-    image: "/team/sarah.jpg",
+    image: placeholder2.src,
   },
 
   // Add more team members as needed

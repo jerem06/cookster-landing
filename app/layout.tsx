@@ -6,6 +6,7 @@ import { Footer } from "@/components/Footer";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ReactQueryClientProvider } from "@/components/ReactQueryClientProvider";
 import { Toaster } from "@/components/ui/toaster";
+import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -54,6 +55,7 @@ export default function RootLayout({
         >
           <Navbar />
           <main>{children}</main>
+          <Analytics />
           <Toaster />
           <Footer />
           <ReactQueryDevtools initialIsOpen={false} />

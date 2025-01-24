@@ -6,6 +6,9 @@ import apple from "@/app/assets/icons/apple-black.svg";
 import AvatarCircles from "@/components/ui/avatar-circles";
 import { StarIcon } from "@heroicons/react/20/solid";
 import StoreNotificationDialog from "@/components/store-notification-dialog";
+import ReactCookieBot from "react-cookiebot";
+
+const domainGroupId = "63815afd-df0a-4371-bc74-784b694c4425";
 
 const HomePage: React.FC = () => {
   const avatars = [
@@ -28,6 +31,7 @@ const HomePage: React.FC = () => {
 
   return (
     <section id="home" className="container mx-auto px-14 py-12 mt-16">
+      <ReactCookieBot domainGroupId={domainGroupId} language="FR" />
       <div className="flex flex-col md:flex-row gap-8">
         <div className="flex-1 ">
           <div className="h-full flex flex-col justify-around">
