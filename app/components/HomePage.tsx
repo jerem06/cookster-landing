@@ -37,12 +37,12 @@ const HomePage: React.FC = () => {
         <div className="flex-1 ">
           <div className="h-full flex flex-col justify-around">
             <div>
-              <h1 className="text-6xl font-bold mb-4">
+              <h1 className="text-6xl font-bold mb-4 text-center md:text-left">
                 Cuisinez et profitez,{" "}
                 <span className="gradient-text">Cookster</span> s&apos;occupe du
                 reste.
               </h1>
-              <h2 className="text-4xl mb-6 max-w-2xl">
+              <h2 className="text-4xl mb-6 max-w-2xl text-center md:text-left text-gray-600">
                 Centralisez vos recettes, planifiez vos repas, et simplifiez vos
                 courses en un clic.
               </h2>

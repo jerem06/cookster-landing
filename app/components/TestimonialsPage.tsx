@@ -119,10 +119,10 @@ const TestimonialsPage: React.FC = () => {
             value={userCount}
             className=" text-4xl font-bold text-primary"
           />{" "}
-          utilisateurs utilsent Cookster quotidiennement
+          utilisateurs actifs chaque jour sur Cookster !
         </h2>
         <h3 className="text-xl font-semibold text-gray-600">
-          Ce qu&apos;ils disent de Cookster
+          Découvrez pourquoi ils adorent notre application :
         </h3>
       </div>
 

@@ -4,6 +4,7 @@ import Iphone15Pro from "@/components/ui/iphone-15-pro";
 import React, { useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { useScroll } from "framer-motion";
+import UnderConstruction from "@/app/assets/images/under-construction.png";
 
 // Define the content type for better type safety
 type FeatureContent = {
@@ -29,7 +30,7 @@ const features: FeatureContent[] = [
     title: "Gagnez du temps avec votre liste de courses (Bientôt disponible)",
     description:
       "Convertissez vos recettes en liste de courses instantanée et évitez les oublis grâce à une organisation optimisée.",
-    image: "https://via.placeholder.com/430x880",
+    image: UnderConstruction.src,
   },
 ];
 
