@@ -47,7 +47,7 @@ const TeamPage: React.FC = () => {
         {/* Header Section */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-4xl font-bold text-gray-900 sm:text-5xl mb-4">
-            Des créteurs passionnés
+            Des créateurs passionnés
           </h2>
           <p className="text-lg text-gray-600">
             Chez Cookster, nous unissons nos forces avec des tops créateurs food

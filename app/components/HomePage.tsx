@@ -4,6 +4,7 @@ import React from "react";
 
 import google from "@/app/assets/images/google-black.png";
 import apple from "@/app/assets/icons/apple-black.svg";
+import app from "@/app/assets/images/app.png";
 import AvatarCircles from "@/components/ui/avatar-circles";
 import { StarIcon } from "@heroicons/react/20/solid";
 import StoreNotificationDialog from "@/components/store-notification-dialog";
@@ -86,10 +87,7 @@ const HomePage: React.FC = () => {
 
         <div className="">
           <div className="relative flex justify-center items-center">
-            <Iphone15Pro
-              className="size-2/3 rotate-6"
-              src="https://via.placeholder.com/430x880"
-            />
+            <Iphone15Pro className="size-2/3 rotate-6" src={app.src} />
           </div>
         </div>
       </div>

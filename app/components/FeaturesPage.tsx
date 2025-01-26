@@ -4,6 +4,8 @@ import Iphone15Pro from "@/components/ui/iphone-15-pro";
 import React, { useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { useScroll } from "framer-motion";
+import app1 from "@/app/assets/images/app1.png";
+import app2 from "@/app/assets/images/app2.png";
 import UnderConstruction from "@/app/assets/images/under-construction.png";
 
 // Define the content type for better type safety
@@ -18,13 +20,13 @@ const features: FeatureContent[] = [
     title: "Votre livre de recettes digital.",
     description:
       "Stockez toutes vos recettes au même endroit, personnalisez-les, et retrouvez-les facilement grâce à un système de recherche intuitif.",
-    image: "https://via.placeholder.com/430x880",
+    image: app1.src,
   },
   {
     title: "Des recettes adaptées à vos envies",
     description:
       "Découvrez des recettes équilibrées, gluten-free, vegan ou personnalisées à votre régime alimentaire, tout en gardant le plaisir de cuisiner.",
-    image: "https://picsum.photos/430/880",
+    image: app2.src,
   },
   {
     title: "Gagnez du temps avec votre liste de courses (Bientôt disponible)",
@@ -97,7 +99,7 @@ const FeaturesPage: React.FC = () => {
                     <div className="flex justify-center md:hidden mt-12">
                       <Iphone15Pro
                         className="size-9/12 "
-                        src={features[currentImageIndex].image}
+                        src={features[index].image}
                       />
                     </div>
                   </div>
