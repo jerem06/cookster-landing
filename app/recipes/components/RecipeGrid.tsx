@@ -6,6 +6,7 @@ import { Recipe } from "@/app/api/datamodel";
 import imagePlaceholder from "@/app/assets/images/empty_placeholder.webp";
 import { indexToTimeDuration } from "@/utils";
 import { getRecipeTranslation } from "@/utils/recipeUtils";
+import { useRouter } from "next/navigation";
 // You'll need to create this type
 
 interface RecipeGridProps {
@@ -13,6 +14,18 @@ interface RecipeGridProps {
 }
 
 const RecipeGrid: React.FC<RecipeGridProps> = ({ recipes }) => {
+  const router = useRouter();
+
+  const formatRecipeSlug = (recipe: Recipe) => {
+    const title = getRecipeTranslation(recipe, "fr")?.title || "";
+    const slug = title
+      .toLowerCase()
+      .replace(/[^a-z0-9\s-]/g, "") // Remove special characters
+      .replace(/\s+/g, "-") // Replace spaces with hyphens
+      .trim();
+    return `${slug}_${recipe.recipe_id}`;
+  };
+
   if (!recipes?.length) {
     return (
       <div className="text-center py-10 text-gray-500">
@@ -26,7 +39,8 @@ const RecipeGrid: React.FC<RecipeGridProps> = ({ recipes }) => {
       {recipes.map((recipe) => (
         <div
           key={recipe.recipe_id}
-          className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+          className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer"
+          onClick={() => router.push(`/recipes/${formatRecipeSlug(recipe)}`)}
         >
           <div className="relative h-48 w-full">
             <Image
