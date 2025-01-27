@@ -5,9 +5,10 @@ import { Recipe, RecipeTranslation, Ingredient, RecipeStep, Equipment, RecipeSte
 
 export async function GET(
     request: Request,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
+        const { id } = await params;
         const supabase = await createClient();
         const { data, error } = await supabase
             .from("recipes")
@@ -59,7 +60,7 @@ export async function GET(
                     )
                 )
             `)
-            .eq("recipe_id", params.id)
+            .eq("recipe_id", id)
             .single();
 
         if (error) throw error;
