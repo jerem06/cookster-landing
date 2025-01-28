@@ -7,6 +7,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ReactQueryClientProvider } from "@/components/ReactQueryClientProvider";
 import { Toaster } from "@/components/ui/toaster";
 import { Analytics } from "@vercel/analytics/next";
+import AdSense from "@/components/AdSense";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -50,6 +51,9 @@ export default function RootLayout({
   return (
     <ReactQueryClientProvider>
       <html lang="en">
+        <head>
+          <AdSense pId="9330956403058480" />
+        </head>
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
