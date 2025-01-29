@@ -2,7 +2,7 @@
 import { Recipe } from "@/app/api/datamodel";
 import { RecipeDetails } from "@/app/components/recipe/RecipeDetails";
 import { useGetRecipeById } from "@/services/api/useGetRecipeById";
-import { notFound } from "next/navigation";
+import { notFound, useRouter } from "next/navigation";
 import { use } from "react";
 
 interface PageProps {
@@ -12,6 +12,7 @@ interface PageProps {
 }
 
 export default function RecipePage({ params }: PageProps) {
+  const router = useRouter();
   const unwrappedParams = use(params);
   const recipe_id = unwrappedParams.slug.split("_").pop();
   const { data: recipe, isFetching } = useGetRecipeById({ id: recipe_id });
@@ -28,5 +29,11 @@ export default function RecipePage({ params }: PageProps) {
     notFound();
   }
 
-  return <RecipeDetails recipe={recipe as Recipe} />;
+  return (
+    <RecipeDetails
+      recipe={recipe as Recipe}
+      showBackButton
+      onBack={() => router.back()}
+    />
+  );
 }

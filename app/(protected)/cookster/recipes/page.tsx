@@ -8,7 +8,11 @@ export default function CooksterRecipesPage() {
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-2xl font-bold mb-4">Les recettes de Cookster</h1>
-      <RecipeGrid isFetching={isFetching} recipes={recipes || []} />
+      <RecipeGrid
+        isFetching={isFetching}
+        recipes={recipes || []}
+        isProtected={true}
+      />
     </div>
   );
 }

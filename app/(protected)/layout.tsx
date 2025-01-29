@@ -2,6 +2,7 @@ import { AppSidebar } from "@/components/app-sidebar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
+import { UserProvider } from "./components/user-provider";
 
 export default async function ProtectedLayout({
   children,
@@ -18,11 +19,13 @@ export default async function ProtectedLayout({
 
   return (
     <SidebarProvider>
-      <AppSidebar />
-      <main>
-        <SidebarTrigger />
-        {children}
-      </main>
+      <UserProvider>
+        <AppSidebar />
+        <main className="w-full">
+          <SidebarTrigger />
+          {children}
+        </main>
+      </UserProvider>
     </SidebarProvider>
   );
 }
