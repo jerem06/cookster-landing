@@ -11,9 +11,10 @@ import { useRouter } from "next/navigation";
 
 interface RecipeGridProps {
   recipes: Recipe[];
+  isFetching: boolean;
 }
 
-const RecipeGrid: React.FC<RecipeGridProps> = ({ recipes }) => {
+const RecipeGrid: React.FC<RecipeGridProps> = ({ recipes, isFetching }) => {
   const router = useRouter();
 
   const formatRecipeSlug = (recipe: Recipe) => {
@@ -25,6 +26,14 @@ const RecipeGrid: React.FC<RecipeGridProps> = ({ recipes }) => {
       .trim();
     return `${slug}_${recipe.recipe_id}`;
   };
+
+  if (isFetching) {
+    return (
+      <div className="flex justify-center items-center h-60">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gray-900"></div>
+      </div>
+    );
+  }
 
   if (!recipes?.length) {
     return (

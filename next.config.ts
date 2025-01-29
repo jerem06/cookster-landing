@@ -18,6 +18,11 @@ const nextConfig: NextConfig = {
         hostname: 'tkqtjvnbczblmmmkdodh.supabase.co',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'www.svgrepo.com',
+        pathname: '/**',
+      },
     ],
     dangerouslyAllowSVG: true,
     contentDispositionType: 'attachment',

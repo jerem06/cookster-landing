@@ -2,10 +2,10 @@ import React from "react";
 import HomePage from "./components/HomePage";
 import FeaturesPage from "./components/FeaturesPage";
 import TestimonialsPage from "./components/TestimonialsPage";
-import FAQ from "./components/FAQ";
-import ConvertSection from "./components/ConvertSection";
-import PricingPage from "./components/PricingPage";
 import TeamPage from "./components/TeamPage";
+import PricingPage from "./components/PricingPage";
+import ConvertSection from "./components/ConvertSection";
+import FAQ from "./components/FAQ";
 
 const MainPage: React.FC = () => {
   return (

@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import logo from "@/app/assets/images/logo.png";
+import { Menu, X } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -13,6 +14,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 const ListItem = React.forwardRef<
   React.ElementRef<"a">,
@@ -41,10 +43,8 @@ const ListItem = React.forwardRef<
 ListItem.displayName = "ListItem";
 
 export function Navbar() {
-  const scrollToFooter = () => {
-    const footer = document.querySelector("footer");
-    footer?.scrollIntoView({ behavior: "smooth" });
-  };
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const router = useRouter();
 
   return (
     <div className="border-b fixed top-0 left-0 right-0 z-50 bg-background">
@@ -62,7 +62,7 @@ export function Navbar() {
           </Link>
         </div>
 
-        <div className="items-center gap-4 hidden md:flex">
+        <div className="hidden md:flex items-center gap-4">
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
@@ -74,9 +74,45 @@ export function Navbar() {
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
-          <Button onClick={scrollToFooter}>S&apos;abonner</Button>
+          <Button onClick={() => router.push("/auth")}>Se connecter</Button>
+        </div>
+
+        <div className="md:hidden">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
+          </Button>
         </div>
       </div>
+
+      {isMenuOpen && (
+        <div className="md:hidden absolute top-16 left-0 right-0 bg-background border-b">
+          <div className="flex flex-col gap-4 p-4">
+            <Link
+              href="/recipes"
+              className="text-lg font-semibold hover:text-primary"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Recettes
+            </Link>
+            <Button
+              onClick={() => {
+                router.push("/auth");
+                setIsMenuOpen(false);
+              }}
+            >
+              Se connecter
+            </Button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
