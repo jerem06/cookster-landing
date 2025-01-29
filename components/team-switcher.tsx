@@ -13,13 +13,14 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-
-const data = {
-  name: "Cookster",
-  plan: "Gratuit",
-};
+import Link from "next/link";
 
 export function TeamSwitcher() {
+  const data = {
+    name: "Cookster",
+    plan: "Gratuit",
+  };
+
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -28,14 +29,17 @@ export function TeamSwitcher() {
             <SidebarMenuButton
               size="lg"
               className="hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+              asChild
             >
-              <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                <Image src={logo} alt="logo" width={32} height={32} />
-              </div>
-              <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-semibold">{data.name}</span>
-                <span className="truncate text-xs">{data.plan}</span>
-              </div>
+              <Link href="/home">
+                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+                  <Image src={logo} alt="logo" width={32} height={32} />
+                </div>
+                <div className="grid flex-1 text-left text-sm leading-tight">
+                  <span className="truncate font-semibold">{data.name}</span>
+                  <span className="truncate text-xs">{data.plan}</span>
+                </div>
+              </Link>
             </SidebarMenuButton>
           </DropdownMenuTrigger>
         </DropdownMenu>

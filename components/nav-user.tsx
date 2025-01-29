@@ -1,22 +1,22 @@
 "use client";
 
 import {
-  BadgeCheck,
-  Bell,
+  //BadgeCheck,
+  //Bell,
   ChevronsUpDown,
-  CreditCard,
+  //CreditCard,
   LogOut,
-  Sparkles,
+  // Sparkles,
 } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
+  //DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
+  //DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
@@ -34,6 +34,7 @@ export function NavUser() {
   const router = useRouter();
   const supabase = createClient();
   const { user, setUser } = useUserStore();
+  console.log("🚀 ~ NavUser ~ user:", user);
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -92,7 +93,7 @@ export function NavUser() {
                 </div>
               </div>
             </DropdownMenuLabel>
-            <DropdownMenuSeparator />
+            {/*  <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
                 <Sparkles />
@@ -114,7 +115,7 @@ export function NavUser() {
                 Notifications
               </DropdownMenuItem>
             </DropdownMenuGroup>
-            <DropdownMenuSeparator />
+            <DropdownMenuSeparator /> */}
             <DropdownMenuItem onClick={handleLogout}>
               <LogOut />
               Log out

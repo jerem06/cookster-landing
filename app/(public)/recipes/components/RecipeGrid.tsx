@@ -12,19 +12,31 @@ import { useRouter } from "next/navigation";
 interface RecipeGridProps {
   recipes: Recipe[];
   isFetching: boolean;
+  isProtected?: boolean;
 }
 
-const RecipeGrid: React.FC<RecipeGridProps> = ({ recipes, isFetching }) => {
+const RecipeGrid: React.FC<RecipeGridProps> = ({
+  recipes,
+  isFetching,
+  isProtected,
+}) => {
   const router = useRouter();
 
   const formatRecipeSlug = (recipe: Recipe) => {
     const title = getRecipeTranslation(recipe, "fr")?.title || "";
-    const slug = title
+    const normalizedTitle = title
+      .normalize("NFD") // Decompose characters with accents
+      .replace(/[\u0300-\u036f]/g, "") // Remove accent marks
       .toLowerCase()
-      .replace(/[^a-z0-9\s-]/g, "") // Remove special characters
+      .replace(/[^a-z0-9\s-]/g, "") // Remove remaining special characters
       .replace(/\s+/g, "-") // Replace spaces with hyphens
       .trim();
-    return `${slug}_${recipe.recipe_id}`;
+
+    if (isProtected) {
+      return `/cookster/recipes/${normalizedTitle}_${recipe.recipe_id}`;
+    } else {
+      return `/recipes/${normalizedTitle}_${recipe.recipe_id}`;
+    }
   };
 
   if (isFetching) {
@@ -49,7 +61,7 @@ const RecipeGrid: React.FC<RecipeGridProps> = ({ recipes, isFetching }) => {
         <div
           key={recipe.recipe_id}
           className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer"
-          onClick={() => router.push(`/recipes/${formatRecipeSlug(recipe)}`)}
+          onClick={() => router.push(formatRecipeSlug(recipe))}
         >
           <div className="relative h-48 w-full">
             <Image
