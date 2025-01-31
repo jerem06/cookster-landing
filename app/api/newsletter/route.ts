@@ -21,7 +21,10 @@ export async function POST(request: Request) {
         const supabase = await createClient();
         const { error } = await supabase
             .from("newsletter")
-            .insert({ email });
+            .upsert(
+                { email },
+                { onConflict: 'email' }
+            );
 
         if (error) throw error;
 
