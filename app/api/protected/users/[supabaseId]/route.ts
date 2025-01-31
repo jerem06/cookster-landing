@@ -3,10 +3,10 @@ import { NextResponse } from "next/server";
 
 export async function GET(
     request: Request,
-    { params }: { params: { supabaseId: string } }
+    { params }: { params: Promise<{ supabaseId: string }> }
 ) {
     try {
-        const supabaseId = params.supabaseId;
+        const { supabaseId } = await params;
         const supabase = await createAnonClient();
 
         const { data, error } = await supabase

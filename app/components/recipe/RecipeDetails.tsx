@@ -1,6 +1,12 @@
 "use client";
 import Image from "next/image";
-import { ArrowLeft, PlayCircle } from "lucide-react";
+import {
+  ArrowLeft,
+  PlayCircle,
+  Bookmark,
+  BookmarkCheck,
+  Loader2,
+} from "lucide-react";
 import { getRecipeTranslation } from "@/utils/recipeUtils";
 import {
   CategorySearchType,
@@ -17,17 +23,27 @@ import { formatCategorySearch, formatDietaryTag } from "@/utils/categoryUtils";
 import { formatDifficulty } from "@/utils/difficultyUtils";
 import { indexToTimeDuration } from "@/utils/timingUtils";
 import { formatUnit } from "@/utils/unitUtils";
+import imagePlaceholder from "@/app/assets/images/empty_placeholder.webp";
+import { getEquipmentTranslation } from "@/utils/equipementUtils";
+import { twMerge } from "tailwind-merge";
+import { useUserStore } from "@/lib/store/user-store";
 
 interface RecipeDetailsProps {
   recipe: Recipe;
   showBackButton?: boolean;
   onBack?: () => void;
+  isBookmarked?: boolean;
+  isBookmarkLoading?: boolean;
+  onBookmarkToogle?: () => void;
 }
 
 export function RecipeDetails({
   recipe,
   showBackButton,
   onBack,
+  isBookmarked = false,
+  isBookmarkLoading,
+  onBookmarkToogle,
 }: RecipeDetailsProps) {
   const {
     difficulty,
@@ -40,7 +56,12 @@ export function RecipeDetails({
     recipe_steps,
     image_url,
     recipe_url,
+    author_id,
   } = recipe;
+
+  const { user_id } = useUserStore();
+
+  const isAuthor = author_id === user_id;
 
   return (
     <div className="container mx-auto px-4 max-w-4xl w-full">
@@ -57,26 +78,41 @@ export function RecipeDetails({
 
       {/* Hero Section with Image and Basic Info */}
       <div className="relative h-96 mb-8 rounded-lg overflow-hidden">
-        {image_url ? (
-          <Image
-            src={image_url}
-            alt={getRecipeTranslation(recipe, "fr")?.title ?? ""}
-            className="w-full h-full object-cover"
-            width={800}
-            height={384}
-          />
-        ) : (
-          <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-            <span className="text-gray-400">No image available</span>
-          </div>
-        )}
+        <Image
+          src={image_url || imagePlaceholder}
+          alt={getRecipeTranslation(recipe, "fr")?.title ?? ""}
+          className="w-full h-full object-cover"
+          width={800}
+          height={384}
+        />
       </div>
 
       {/* Title and Video Link Section */}
       <div className="mb-8 flex justify-between items-center">
-        <h1 className="text-4xl font-bold">
-          {getRecipeTranslation(recipe, "fr")?.title ?? ""}
-        </h1>
+        <div className="flex items-center gap-4">
+          <h1 className="text-4xl font-bold">
+            {getRecipeTranslation(recipe, "fr")?.title ?? ""}
+          </h1>
+          {!isAuthor && (
+            <button
+              onClick={onBookmarkToogle}
+              disabled={isBookmarkLoading}
+              className={twMerge(
+                `p-1 rounded-full hover:bg-gray-100 transition-colors ${
+                  isBookmarkLoading ? "opacity-50" : ""
+                }`
+              )}
+            >
+              {isBookmarkLoading ? (
+                <Loader2 className="w-6 h-6 text-gray-500 animate-spin" />
+              ) : isBookmarked ? (
+                <BookmarkCheck className="w-6 h-6 text-blue-500" />
+              ) : (
+                <Bookmark className="w-6 h-6 text-gray-500" />
+              )}
+            </button>
+          )}
+        </div>
         {recipe_url && (
           <a
             href={recipe_url}
@@ -140,13 +176,13 @@ export function RecipeDetails({
                 className="flex items-center gap-3"
               >
                 <Image
-                  src={equipment.image_url}
-                  alt={equipment.translations.en.name}
+                  src={equipment.image_url || imagePlaceholder}
+                  alt={getEquipmentTranslation(equipment, "fr")?.name || ""}
                   className="w-12 h-12 object-cover rounded"
                   width={48}
                   height={48}
                 />
-                <span>{equipment.translations.en.name}</span>
+                <span>{getEquipmentTranslation(equipment, "fr")?.name}</span>
               </div>
             ))}
           </div>
@@ -165,7 +201,7 @@ export function RecipeDetails({
               >
                 {ingredient.image_url && (
                   <Image
-                    src={ingredient.image_url}
+                    src={ingredient.image_url || imagePlaceholder}
                     alt={"ingredient image"}
                     className="object-cover rounded"
                     width={130}

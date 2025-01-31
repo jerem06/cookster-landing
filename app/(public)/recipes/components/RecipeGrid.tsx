@@ -7,6 +7,7 @@ import imagePlaceholder from "@/app/assets/images/empty_placeholder.webp";
 import { indexToTimeDuration } from "@/utils";
 import { getRecipeTranslation } from "@/utils/recipeUtils";
 import { useRouter } from "next/navigation";
+import { MonitorPlay } from "lucide-react";
 // You'll need to create this type
 
 interface RecipeGridProps {
@@ -60,7 +61,7 @@ const RecipeGrid: React.FC<RecipeGridProps> = ({
       {recipes.map((recipe) => (
         <div
           key={recipe.recipe_id}
-          className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer"
+          className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer h-[350px] flex flex-col"
           onClick={() => router.push(formatRecipeSlug(recipe))}
         >
           <div className="relative h-48 w-full">
@@ -71,14 +72,15 @@ const RecipeGrid: React.FC<RecipeGridProps> = ({
               className="object-cover"
             />
           </div>
-          <div className="p-4">
-            <h3 className="font-semibold text-lg mb-2">
+          <div className="p-4 flex flex-col flex-1 justify-between ">
+            <h3 className="font-semibold text-lg">
               {getRecipeTranslation(recipe, "fr")?.title}
             </h3>
-            <div className="mt-4 flex items-center text-sm text-gray-500">
-              <span>⏱️ {indexToTimeDuration(recipe.time || 0)} mins</span>
-              <span className="mx-2">•</span>
-              <span>👥 {recipe.portions} portions</span>
+            <div className="flex items-center text-sm text-gray-500 justify-between">
+              <span className="text">
+                ⏱️ {indexToTimeDuration(recipe.time || 0)}
+              </span>
+              {recipe.recipe_url ? <MonitorPlay className="w-6 h-6" /> : null}
             </div>
           </div>
         </div>

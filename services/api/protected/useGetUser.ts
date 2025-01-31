@@ -1,4 +1,3 @@
-
 import { User } from "@/app/api/datamodel";
 import { useQuery } from "@tanstack/react-query";
 
@@ -19,13 +18,13 @@ const fetchUser = async (supabaseId: string): Promise<Partial<User>> => {
 };
 
 type UseGetUserParams = {
-    supabaseId: string;
+    supabaseId?: string;
 };
 
 export const useGetUser = ({ supabaseId }: UseGetUserParams) => {
     return useQuery({
         queryKey: ['user', supabaseId],
-        queryFn: () => fetchUser(supabaseId),
+        queryFn: () => fetchUser(supabaseId!),
         enabled: !!supabaseId,
     });
 }; 

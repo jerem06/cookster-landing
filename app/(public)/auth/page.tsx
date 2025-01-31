@@ -3,8 +3,8 @@
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { useEffect } from "react";
-import Image from "next/image";
 import { useUserStore } from "@/lib/store/user-store";
+import { LoginForm } from "@/components/login-form";
 
 export default function AuthPage() {
   const router = useRouter();
@@ -33,10 +33,6 @@ export default function AuthPage() {
   };
 
   const handleAppleLogin = async () => {
-    console.log(
-      "${window.location.origin}/auth/callback",
-      window.location.origin
-    );
     try {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: "apple",
@@ -102,27 +98,10 @@ export default function AuthPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center flex-col gap-4">
-      <button
-        onClick={handleGoogleLogin}
-        className="px-4 py-2 border flex gap-2 border-slate-200 rounded-lg text-slate-700 hover:border-slate-400 hover:text-slate-900 hover:shadow transition duration-150"
-      >
-        <Image
-          className="w-6 h-6"
-          src="https://www.svgrepo.com/show/475656/google-color.svg"
-          loading="lazy"
-          alt="google logo"
-          width={24}
-          height={24}
-        />
-        <span>Login with Google</span>
-      </button>
-
-      <button
-        onClick={handleAppleLogin}
-        className="px-4 py-2 border flex gap-2 border-slate-200 rounded-lg text-slate-700 hover:border-slate-400 hover:text-slate-900 hover:shadow transition duration-150"
-      >
-        <span>Login with Apple</span>
-      </button>
+      <LoginForm
+        handleAppleLogin={handleAppleLogin}
+        handleGoogleLogin={handleGoogleLogin}
+      />
     </div>
   );
 }

@@ -28,7 +28,7 @@ export const formatDietaryTag = (dietaryTag: DietaryTagType): string => {
 };
 
 const categorySearchMap: Record<CategorySearchType, string> = {
-  recentRecipes: "Recipes récents",
+  recentRecipes: "Ajoutés récemment",
   UNCATEGORIZED: "Non classé",
   BREAKFAST: "Petits déjeuners",
   LUNCH: "Déjeuners",

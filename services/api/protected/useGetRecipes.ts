@@ -2,8 +2,13 @@ import { Recipe } from "@/app/api/datamodel";
 import { useQuery } from "@tanstack/react-query";
 
 
-const fetchRecipes = async (searchTerm: string = ''): Promise<Recipe[]> => {
-    const response = await fetch(`/api/protected/recipes?search=${encodeURIComponent(searchTerm)}`, {
+const fetchRecipes = async (searchTerm: string = '', withinWeek: boolean = false): Promise<Recipe[]> => {
+    const params = new URLSearchParams({
+        search: searchTerm,
+        withinWeek: withinWeek.toString()
+    });
+
+    const response = await fetch(`/api/protected/recipes?${params.toString()}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -18,9 +23,9 @@ const fetchRecipes = async (searchTerm: string = ''): Promise<Recipe[]> => {
     return data.recipes;
 };
 
-export const useGetRecipes = (searchTerm: string = '') => {
+export const useGetRecipes = (searchTerm: string = '', withinWeek: boolean = false) => {
     return useQuery({
-        queryKey: ['recipes', searchTerm],
-        queryFn: () => fetchRecipes(searchTerm),
+        queryKey: ['recipes', searchTerm, withinWeek],
+        queryFn: () => fetchRecipes(searchTerm, withinWeek),
     });
 }; 
