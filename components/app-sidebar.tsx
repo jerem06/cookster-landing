@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Frame, Map, PieChart, ChefHat, Bookmark } from "lucide-react";
+import { Frame, Map, PieChart, Bookmark, Home, Search } from "lucide-react";
 
 import { NavMain } from "@/components/nav-main";
 //import { NavProjects } from "@/components/nav-projects";
@@ -19,25 +19,20 @@ import {
 const data = {
   navMain: [
     {
+      title: "Accueil",
+      url: "/home",
+      icon: Home,
+    },
+    {
       title: "Recettes Cookster",
       url: "/cookster/recipes",
-      icon: ChefHat,
+      icon: Search,
     },
     {
       title: "Mes recettes",
       url: "/bookmark",
       icon: Bookmark,
     },
-    /* {
-      title: "Documentation",
-      url: "#",
-      icon: BookOpen,
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: Settings2,
-    }, */
   ],
   projects: [
     {
