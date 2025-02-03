@@ -44,8 +44,9 @@ const FAQ: React.FC = () => {
   return (
     <section
       id="faq"
-      className="lg:h-screen max-w-lg lg:max-w-screen-md  mx-12 sm:mx-auto justify-center items-center flex"
+      className=" flex-col lg:h-screen max-w-lg lg:max-w-screen-md  mx-12 sm:mx-auto justify-center items-center flex gap-8"
     >
+      <h2 className="text-4xl font-bold mb-4">FAQ</h2>
       <Accordion type="single" collapsible className="w-full">
         {faqItems.map((item, index) => (
           <AccordionItem key={`item-${index + 1}`} value={`item-${index + 1}`}>

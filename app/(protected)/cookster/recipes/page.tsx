@@ -29,7 +29,6 @@ export default function CooksterRecipesPage() {
         <div className="relative -mt-6">
           <SearchHeader onSearch={handleSearch} />
         </div>
-        <h1 className="text-4xl font-bold my-6">Les recettes Cookster</h1>
         <RecipeGrid
           isFetching={isFetching}
           recipes={recipes || []}

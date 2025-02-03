@@ -48,9 +48,18 @@ export default function RootLayout({
 }>) {
   return (
     <ReactQueryClientProvider>
-      <html lang="en">
+      <html lang="fr">
         <head>
           <AdSense pId="9330956403058480" />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `window.lemonSqueezyAffiliateConfig = {
+                store: 'cookster',
+                debug: true
+              }`,
+            }}
+          />
+          <script src="https://lmsqueezy.com/affiliate.js" defer />
         </head>
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}

@@ -3,6 +3,7 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 import { UserProvider } from "./components/user-provider";
+import Script from "next/script";
 
 export default async function ProtectedLayout({
   children,
@@ -21,6 +22,10 @@ export default async function ProtectedLayout({
     <SidebarProvider>
       <UserProvider user={data.user}>
         <AppSidebar />
+        <Script
+          src="https://app.lemonsqueezy.com/js/lemon.js"
+          strategy="afterInteractive"
+        />
         <main className="w-full">
           <SidebarTrigger />
           {children}

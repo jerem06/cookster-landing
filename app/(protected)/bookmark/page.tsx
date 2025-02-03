@@ -30,6 +30,17 @@ export default function BookmarkPage() {
     /*  { key: "UNCATEGORIZED", title: "Uncategorized" }, */
   ];
 
+  if (!isFetching && !recipes?.length) {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <h1 className="text-4xl font-bold mb-4">Mes recettes</h1>
+        <p className="text-lg">
+          Vous n&apos;avez pas encore ajouté de recettes à vos favoris.
+        </p>
+      </div>
+    );
+  }
+
   //const { data: recipes, isFetching } = useGetUserRecipes(user?.id);
   return (
     <div className="container mx-auto px-4 py-8">

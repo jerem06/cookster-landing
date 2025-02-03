@@ -79,7 +79,7 @@ const FeaturesPage: React.FC = () => {
       {isMobile ? (
         <>
           <div
-            className="relative mx-12 md:mx-0"
+            className="relative mx-12 md:mx-0 pt-4"
             style={{ marginTop: isMobile ? "0" : "-100vh" }}
           >
             {features.map((feature, index) => (
@@ -98,7 +98,7 @@ const FeaturesPage: React.FC = () => {
                     </p>
                     <div className="flex justify-center md:hidden mt-12">
                       <Iphone15Pro
-                        className="size-9/12 "
+                        className="size-11/12 "
                         src={features[index].image}
                       />
                     </div>

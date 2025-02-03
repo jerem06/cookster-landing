@@ -50,7 +50,7 @@ const PricingPage: React.FC = () => {
           Des prix adaptés à vos besoins
         </h2>
         <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">
-          Choisissez le plan qui vous convient
+          Choisissez l&apos;abonnement qui vous convient
         </p>
 
         <div className="flex items-center justify-center gap-4">

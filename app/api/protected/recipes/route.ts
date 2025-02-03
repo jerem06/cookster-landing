@@ -26,23 +26,25 @@ export async function GET(request: Request) {
 
         if (withinWeek) {
             const today = new Date();
-            const previousMonday = new Date(today);
-            const previousSunday = new Date(today);
 
-            // Go back to previous Sunday
-            previousSunday.setDate(today.getDate() - today.getDay());
-            previousSunday.setHours(23, 59, 59, 999); // End of Sunday
+            // Get last Sunday (end of previous week)
+            const lastSunday = new Date(today);
+            lastSunday.setDate(today.getDate() - today.getDay() - 1);
+            lastSunday.setHours(23, 59, 59, 999); // End of day
 
-            // Go back to previous Monday
-            previousMonday.setDate(previousSunday.getDate() - 6);
-            previousMonday.setHours(0, 0, 0, 0); // Start of Monday
+            // Get last Monday (start of previous week)
+            const lastMonday = new Date(lastSunday);
+            lastMonday.setDate(lastSunday.getDate() - 6);
+            lastMonday.setHours(0, 0, 0, 0); // Start of day
+
 
             query = query
-                .gte("created_at", previousMonday.toISOString())
-                .lte("created_at", previousSunday.toISOString());
+                .gte("created_at", lastMonday.toISOString())
+                .lte("created_at", lastSunday.toISOString());
         }
 
         const { data, error, count } = await query;
+
 
         if (error) throw error;
 

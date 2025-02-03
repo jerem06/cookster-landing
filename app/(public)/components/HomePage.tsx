@@ -87,7 +87,10 @@ const HomePage: React.FC = () => {
 
         <div className="">
           <div className="relative flex justify-center items-center">
-            <Iphone15Pro className="size-2/3 rotate-6" src={app.src} />
+            <Iphone15Pro
+              className="md:size-2/3 size-3/4 rotate-6"
+              src={app.src}
+            />
           </div>
         </div>
       </div>

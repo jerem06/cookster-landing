@@ -6,17 +6,17 @@ import {
   ChevronsUpDown,
   //CreditCard,
   LogOut,
-  // Sparkles,
+  Sparkles,
 } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  //DropdownMenuGroup,
+  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
-  //DropdownMenuSeparator,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
@@ -92,14 +92,14 @@ export function NavUser() {
                 </div>
               </div>
             </DropdownMenuLabel>
-            {/*  <DropdownMenuSeparator />
+            <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={() => router.push("/billing")}>
                 <Sparkles />
-                Upgrade to Pro
+                Gérer mon abonnement
               </DropdownMenuItem>
             </DropdownMenuGroup>
-            <DropdownMenuSeparator />
+            {/*  <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
                 <BadgeCheck />
@@ -113,8 +113,8 @@ export function NavUser() {
                 <Bell />
                 Notifications
               </DropdownMenuItem>
-            </DropdownMenuGroup>
-            <DropdownMenuSeparator /> */}
+            </DropdownMenuGroup> */}
+            <DropdownMenuSeparator />
             <DropdownMenuItem onClick={handleLogout}>
               <LogOut />
               Log out
