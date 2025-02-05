@@ -51,7 +51,7 @@ export async function generateMetadata(
     return {
       title: recipe.translations.fr.title,
       openGraph: {
-        title: recipe.translations.fr.title,
+        title: `${recipe.translations.fr.title} | Cookster`,
         description: recipe.translations.fr.title,
         images: [recipe.image, ...(parentMetadata.openGraph?.images || [])],
       },
