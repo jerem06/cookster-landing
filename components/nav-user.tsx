@@ -34,6 +34,7 @@ export function NavUser() {
   const router = useRouter();
   const supabase = createClient();
   const { user, setUser } = useUserStore();
+  console.log("🚀 ~ NavUser ~ user:", user?.user_metadata.avatar_url);
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -58,7 +59,9 @@ export function NavUser() {
                   src={user?.user_metadata.avatar_url}
                   alt={user?.user_metadata.full_name}
                 />
-                <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                <AvatarFallback className="rounded-lg">
+                  {user?.user_metadata.full_name.charAt(0).toUpperCase()}
+                </AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-semibold">

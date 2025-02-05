@@ -29,6 +29,8 @@ const BillingPage = () => {
   const products = data?.products || [];
   const hasMobileSubscription = data?.hasMobileSubscription;
   const subscriptionId = data?.subscriptionId;
+  const subscription = data?.subscription;
+  console.log("🚀 ~ BillingPage ~ subscription:", subscription);
 
   const router = useRouter();
   const [loading, setLoading] = useState<string | null>(null);
@@ -126,6 +128,26 @@ const BillingPage = () => {
     }, 1000);
   };
 
+  const handleReactivateSubscription = async () => {
+    if (!subscriptionId) return;
+    try {
+      const response = await fetch(`/api/protected/reactivate-subscription`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ subscriptionId }),
+      });
+      const { subscription } = await response.json();
+
+      if (subscription) {
+        await refetch();
+      }
+    } catch (error) {
+      console.error("Error reactivating subscription:", error);
+    }
+  };
+
   const CancelSuccessDialog = () => (
     <AlertDialog
       open={showCancelSuccessDialog}
@@ -197,6 +219,7 @@ const BillingPage = () => {
             <Button
               variant="outline"
               onClick={() => router.push("/billing/change-plans")}
+              disabled={subscription?.data.attributes.status === "cancelled"}
             >
               Changer de plan
             </Button>
@@ -214,10 +237,30 @@ const BillingPage = () => {
                           <h2 className="text-2xl font-bold text-primary">
                             {product.attributes.name}
                           </h2>
-                          <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
-                            Actif
+                          <span
+                            className={`px-3 py-1 rounded-full text-sm font-medium ${
+                              subscription?.data.attributes.status ===
+                              "cancelled"
+                                ? "bg-red-100 text-red-700"
+                                : "bg-primary/10 text-primary"
+                            }`}
+                          >
+                            {subscription?.data.attributes.status ===
+                            "cancelled"
+                              ? "Annulé"
+                              : "Actif"}
                           </span>
                         </div>
+                        {subscription?.data.attributes.status ===
+                          "cancelled" && (
+                          <p className="text-sm text-gray-600 mt-2">
+                            Votre abonnement prendra fin le{" "}
+                            {new Date(
+                              subscription?.data.attributes.ends_at ??
+                                new Date()
+                            ).toLocaleDateString()}
+                          </p>
+                        )}
                         <div className="flex items-baseline gap-2 mt-2">
                           <span className="text-3xl font-bold">
                             {product.attributes.price / 100}€
@@ -251,13 +294,24 @@ const BillingPage = () => {
                           Gérer le paiement
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem
-                          onClick={handleCancelSubscription}
-                          disabled={cancelLoading}
-                          className="text-destructive"
-                        >
-                          Annuler l&apos;abonnement
-                        </DropdownMenuItem>
+                        {subscription?.data.attributes.status !==
+                        "cancelled" ? (
+                          <DropdownMenuItem
+                            onClick={handleCancelSubscription}
+                            disabled={cancelLoading}
+                            className="text-destructive"
+                          >
+                            Annuler l&apos;abonnement
+                          </DropdownMenuItem>
+                        ) : (
+                          <DropdownMenuItem
+                            onClick={handleReactivateSubscription}
+                            disabled={cancelLoading}
+                            className="text-primary"
+                          >
+                            Réactiver l&apos;abonnement
+                          </DropdownMenuItem>
+                        )}
                       </DropdownMenuContent>
                     </DropdownMenu>
                   </div>

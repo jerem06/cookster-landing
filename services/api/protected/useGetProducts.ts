@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { Variant } from "@lemonsqueezy/lemonsqueezy.js";
+import { Subscription, Variant } from "@lemonsqueezy/lemonsqueezy.js";
 
 
 type ProductVariant = Variant['data'] & {
@@ -12,6 +12,7 @@ interface ProductsResponse {
     products: ProductVariant[];
     hasMobileSubscription: boolean;
     subscriptionId: string | null;
+    subscription: Subscription | null;
 }
 
 const fetchProducts = async (): Promise<ProductsResponse> => {

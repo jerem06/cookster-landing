@@ -1,6 +1,6 @@
 import { createAnonClient } from "@/lib/supabase/serverAnon";
 import { configureLemonSqueezy } from "@/services/lemonsqueezy/config";
-import { listProducts, Variant } from "@lemonsqueezy/lemonsqueezy.js";
+import { getSubscription, listProducts, Variant } from "@lemonsqueezy/lemonsqueezy.js";
 import { NextResponse } from "next/server";
 
 export async function GET() {
@@ -43,12 +43,15 @@ export async function GET() {
         }));
 
 
+        const { data: subscription } = await getSubscription(userData?.subscription_id)
+
 
 
         return NextResponse.json({
             products: publishedVariants,
             hasMobileSubscription,
-            subscriptionId: userData?.subscription_id
+            subscriptionId: userData?.subscription_id,
+            subscription
         });
     } catch (error) {
         return NextResponse.json(

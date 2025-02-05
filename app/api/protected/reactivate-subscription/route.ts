@@ -1,6 +1,6 @@
 import { createAnonClient } from "@/lib/supabase/serverAnon";
 import { configureLemonSqueezy } from "@/services/lemonsqueezy/config";
-import { cancelSubscription } from "@lemonsqueezy/lemonsqueezy.js";
+import { updateSubscription } from "@lemonsqueezy/lemonsqueezy.js";
 
 export async function POST(request: Request) {
     configureLemonSqueezy()
@@ -22,15 +22,16 @@ export async function POST(request: Request) {
             );
         }
 
-        const subscription = await cancelSubscription(subscriptionId);
-
+        const subscription = await updateSubscription(subscriptionId, {
+            cancelled: false,
+        });
 
         return Response.json({ subscription });
     } catch (error) {
-        console.error("Error generating cancellation URL:", error);
+        console.error("Error reactivating subscription:", error);
         return Response.json(
-            { error: "Failed to generate cancellation URL" },
+            { error: "Failed to reactivate subscription" },
             { status: 500 }
         );
     }
-}
+} 
