@@ -27,6 +27,7 @@ import imagePlaceholder from "@/app/assets/images/empty_ingredient.webp";
 import { getEquipmentTranslation } from "@/utils/equipementUtils";
 import { twMerge } from "tailwind-merge";
 import { useUserStore } from "@/lib/store/user-store";
+import { useRouter } from "next/navigation";
 
 interface RecipeDetailsProps {
   recipe: Recipe;
@@ -35,6 +36,7 @@ interface RecipeDetailsProps {
   isBookmarked?: boolean;
   isBookmarkLoading?: boolean;
   onBookmarkToogle?: () => void;
+  isPublic?: boolean;
 }
 
 export function RecipeDetails({
@@ -44,6 +46,7 @@ export function RecipeDetails({
   isBookmarked = false,
   isBookmarkLoading,
   onBookmarkToogle,
+  isPublic = false,
 }: RecipeDetailsProps) {
   const {
     difficulty,
@@ -60,6 +63,8 @@ export function RecipeDetails({
   } = recipe;
 
   const { user_id } = useUserStore();
+
+  const router = useRouter();
 
   const isAuthor = author_id === user_id;
 
@@ -87,7 +92,7 @@ export function RecipeDetails({
         />
         {!isAuthor && (
           <button
-            onClick={onBookmarkToogle}
+            onClick={isPublic ? () => router.push("/auth") : onBookmarkToogle}
             disabled={isBookmarkLoading}
             className={twMerge(
               `p-1 absolute top-4 right-4 rounded-full hover:bg-gray-100 bg-background transition-colors ${
@@ -118,10 +123,10 @@ export function RecipeDetails({
             href={recipe_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+            className="inline-flex flex-col md:flex-row items-center gap-2 px-4 py-2 bg-red-600 text-white text-center rounded-lg hover:bg-red-700 transition-colors"
           >
             <PlayCircle className="w-5 h-5" />
-            Voir la vidéo
+            <span className="hidden md:block">Voir la vidéo</span>
           </a>
         )}
       </div>
