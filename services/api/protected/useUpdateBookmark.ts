@@ -1,9 +1,12 @@
 import { useQueryClient, useMutation } from "@tanstack/react-query";
 
+
 type UpdateBookmarkParams = {
     userId: number;
     recipeId: string;
 };
+
+
 
 const toggleBookmark = async ({ userId, recipeId }: UpdateBookmarkParams): Promise<boolean> => {
     const response = await fetch('/api/protected/bookmarks', {
@@ -16,7 +19,7 @@ const toggleBookmark = async ({ userId, recipeId }: UpdateBookmarkParams): Promi
 
     if (!response.ok) {
         const error = await response.json();
-        throw new Error(error.errorMessage || 'Failed to update bookmark');
+        throw error;
     }
 
     const data = await response.json();
@@ -40,5 +43,6 @@ export const useUpdateBookmark = () => {
                 queryKey: ["profile-recipe-numbers", variables.userId],
             }); */
         },
+
     });
 }; 

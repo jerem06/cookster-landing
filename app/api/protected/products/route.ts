@@ -30,7 +30,9 @@ export async function GET() {
         const allVariants = products.included as Variant['data'][] | undefined;
 
         // Add a flag to indicate if user has mobile subscription
-        const hasMobileSubscription = userData?.status === 'active' && !userData?.product_id;
+        // Check if product_id includes 'rc' or if there's no product_id with active status
+        const hasMobileSubscription = userData?.status === 'active' &&
+            (userData?.product_id?.includes('rc') || !userData?.product_id);
 
         // Filter variants to keep only published ones
         const publishedVariants = allVariants?.filter(variant =>

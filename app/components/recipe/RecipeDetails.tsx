@@ -23,7 +23,7 @@ import { formatCategorySearch, formatDietaryTag } from "@/utils/categoryUtils";
 import { formatDifficulty } from "@/utils/difficultyUtils";
 import { indexToTimeDuration } from "@/utils/timingUtils";
 import { formatUnit } from "@/utils/unitUtils";
-import imagePlaceholder from "@/app/assets/images/empty_placeholder.webp";
+import imagePlaceholder from "@/app/assets/images/empty_ingredient.webp";
 import { getEquipmentTranslation } from "@/utils/equipementUtils";
 import { twMerge } from "tailwind-merge";
 import { useUserStore } from "@/lib/store/user-store";
@@ -85,6 +85,25 @@ export function RecipeDetails({
           width={800}
           height={384}
         />
+        {!isAuthor && (
+          <button
+            onClick={onBookmarkToogle}
+            disabled={isBookmarkLoading}
+            className={twMerge(
+              `p-1 absolute top-4 right-4 rounded-full hover:bg-gray-100 bg-background transition-colors ${
+                isBookmarkLoading ? "opacity-50" : ""
+              }`
+            )}
+          >
+            {isBookmarkLoading ? (
+              <Loader2 className="w-6 h-6 text-gray-500 animate-spin" />
+            ) : isBookmarked ? (
+              <BookmarkCheck className="w-6 h-6 text-blue-500" />
+            ) : (
+              <Bookmark className="w-6 h-6 text-gray-500" />
+            )}
+          </button>
+        )}
       </div>
 
       {/* Title and Video Link Section */}
@@ -93,25 +112,6 @@ export function RecipeDetails({
           <h1 className="text-4xl font-bold">
             {getRecipeTranslation(recipe, "fr")?.title ?? ""}
           </h1>
-          {!isAuthor && (
-            <button
-              onClick={onBookmarkToogle}
-              disabled={isBookmarkLoading}
-              className={twMerge(
-                `p-1 rounded-full hover:bg-gray-100 transition-colors ${
-                  isBookmarkLoading ? "opacity-50" : ""
-                }`
-              )}
-            >
-              {isBookmarkLoading ? (
-                <Loader2 className="w-6 h-6 text-gray-500 animate-spin" />
-              ) : isBookmarked ? (
-                <BookmarkCheck className="w-6 h-6 text-blue-500" />
-              ) : (
-                <Bookmark className="w-6 h-6 text-gray-500" />
-              )}
-            </button>
-          )}
         </div>
         {recipe_url && (
           <a
@@ -199,15 +199,14 @@ export function RecipeDetails({
                 key={ingredient.ingredient_id}
                 className="flex flex-col justify-center items-center gap-3 p-3 bg-gray-50 rounded-lg"
               >
-                {ingredient.image_url && (
-                  <Image
-                    src={ingredient.image_url || imagePlaceholder}
-                    alt={"ingredient image"}
-                    className="object-cover rounded"
-                    width={130}
-                    height={130}
-                  />
-                )}
+                <Image
+                  src={ingredient.image_url || imagePlaceholder}
+                  alt={"ingredient image"}
+                  className="object-cover rounded"
+                  width={130}
+                  height={130}
+                />
+
                 <div className="flex flex-col items-center">
                   <span>
                     {ingredient.quantity}{" "}

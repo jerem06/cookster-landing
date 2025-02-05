@@ -14,9 +14,9 @@ interface PageProps {
 export default function RecipePage({ params }: PageProps) {
   const unwrappedParams = use(params);
   const recipe_id = unwrappedParams.slug.split("_").pop();
-  const { data: recipe, isFetching } = useGetRecipeById({ id: recipe_id });
+  const { data: recipe, isPending } = useGetRecipeById({ id: recipe_id });
 
-  if (isFetching) {
+  if (isPending) {
     return (
       <div className="flex justify-center items-center min-h-screen">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gray-900"></div>

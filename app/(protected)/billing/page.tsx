@@ -30,7 +30,6 @@ const BillingPage = () => {
   const hasMobileSubscription = data?.hasMobileSubscription;
   const subscriptionId = data?.subscriptionId;
   const subscription = data?.subscription;
-  console.log("🚀 ~ BillingPage ~ subscription:", subscription);
 
   const router = useRouter();
   const [loading, setLoading] = useState<string | null>(null);

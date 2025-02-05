@@ -34,7 +34,6 @@ export function NavUser() {
   const router = useRouter();
   const supabase = createClient();
   const { user, setUser } = useUserStore();
-  console.log("🚀 ~ NavUser ~ user:", user?.user_metadata.avatar_url);
 
   const handleLogout = async () => {
     await supabase.auth.signOut();

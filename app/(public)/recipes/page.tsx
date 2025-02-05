@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 const RecipePage: React.FC = () => {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
-  const { data: recipes, isFetching } = useGetRecipes(searchQuery);
+  const { data: recipes, isPending } = useGetRecipes(searchQuery);
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
@@ -42,7 +42,7 @@ const RecipePage: React.FC = () => {
         <div className="relative -mt-6">
           <SearchHeader onSearch={handleSearch} />
         </div>
-        <RecipeGrid isFetching={isFetching} recipes={recipes || []} />
+        <RecipeGrid isFetching={isPending} recipes={recipes || []} />
       </div>
     </div>
   );
