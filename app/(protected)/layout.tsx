@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 import { UserProvider } from "./components/user-provider";
 import Script from "next/script";
+import { headers } from "next/headers";
 
 export default async function ProtectedLayout({
   children,
@@ -12,10 +13,13 @@ export default async function ProtectedLayout({
 }) {
   const supabase = await createClient();
 
+  const headerList = await headers();
+  const pathname = await headerList.get("x-current-path");
+
   const { data, error } = await supabase.auth.getUser();
 
   if (error || !data?.user) {
-    redirect("/auth");
+    redirect(`/auth?next=${pathname}`);
   }
 
   return (

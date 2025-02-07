@@ -14,10 +14,15 @@ export default function AuthPage() {
 
   const handleGoogleLogin = async () => {
     try {
+      const params = new URLSearchParams(window.location.search);
+      const nextPath = params.get("next") || "/home";
+
       const { error } = await supabase.auth.signInWithOAuth({
         provider: "google",
         options: {
-          redirectTo: `${window.location.origin}/auth/callback`,
+          redirectTo: `${
+            window.location.origin
+          }/auth/callback?next=${encodeURIComponent(nextPath)}`,
           queryParams: {
             access_type: "offline",
             prompt: "consent",
@@ -34,10 +39,15 @@ export default function AuthPage() {
 
   const handleAppleLogin = async () => {
     try {
+      const params = new URLSearchParams(window.location.search);
+      const nextPath = params.get("next") || "/home";
+
       const { error } = await supabase.auth.signInWithOAuth({
         provider: "apple",
         options: {
-          redirectTo: `${window.location.origin}/auth/callback`,
+          redirectTo: `${
+            window.location.origin
+          }/auth/callback?next=${encodeURIComponent(nextPath)}`,
         },
       });
 
