@@ -24,6 +24,12 @@ interface Window {
              * Closes the current opened Lemon Squeezy overlay checkout window.
              */
             Close: () => void
+
+            /**
+            * Append the affiliate tracking parameter to the given URL
+            * @param url - The URL to append the affiliate tracking parameter to.
+            */
+            Build: (url: string) => string
         }
         Affiliate: {
             /**

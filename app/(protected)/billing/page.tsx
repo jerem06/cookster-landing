@@ -41,12 +41,6 @@ const BillingPage = () => {
     refetch();
   }, [refetch]);
 
-  useEffect(() => {
-    if (typeof window.createLemonSqueezy === "function") {
-      window.createLemonSqueezy();
-    }
-  }, []);
-
   const handleCheckout = async (variantId: string) => {
     try {
       setLoading(variantId);
@@ -65,7 +59,9 @@ const BillingPage = () => {
       }
 
       if (checkoutUrl) {
-        window.LemonSqueezy.Url.Open(checkoutUrl);
+        // Build the URL with affiliate tracking parameters
+        const builtUrl = window.LemonSqueezy.Url.Build(checkoutUrl);
+        window.LemonSqueezy.Url.Open(builtUrl);
       }
     } catch (error) {
       console.error("Checkout error:", error);
