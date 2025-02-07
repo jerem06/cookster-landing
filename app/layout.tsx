@@ -31,6 +31,7 @@ export const metadata: Metadata = {
     "astuces cuisine",
     "liste de courses",
     "aggrégateur de recettes",
+    "livre de recettes digital",
   ],
   authors: [{ name: "Jérémie BENCINI" }],
   creator: "Jérémie BENCINI",
@@ -40,7 +41,8 @@ export const metadata: Metadata = {
     follow: true,
   },
   openGraph: {
-    title: "Cookster - Aggrégateur de recettes et liste de courses automatique",
+    title:
+      "Cookster - Livre de recettes numérique et liste de courses automatique",
     description:
       "Découvrez, créez et partagez de délicieuses recettes avec Cookster. Votre application mobile incontournable pour la cuisine, la planification des repas et liste de courses automatique.",
     images: [
@@ -48,7 +50,7 @@ export const metadata: Metadata = {
         url: "https://tkqtjvnbczblmmmkdodh.supabase.co/storage/v1/object/public/image_recipe_bucket/54a8583e-57d6-45ab-b874-a3f9a5f6a22c/0.7586322824369135-1738351180904.png",
         width: 800,
         height: 600,
-        alt: "Cookster - Aggrégateur de recettes et liste de courses automatique",
+        alt: "Cookster - Livre de recettes numérique et liste de courses automatique",
       },
     ],
   },
