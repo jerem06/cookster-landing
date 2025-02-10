@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+import { createAnonClient } from "@/lib/supabase/serverAnon";
 import { NextResponse } from "next/server";
 import { Recipe, RecipeTranslation, Ingredient, RecipeStep, Equipment, RecipeStepTranslation } from "@/app/api/datamodel";
 
@@ -9,7 +9,7 @@ export async function GET(
 ) {
     try {
         const { id } = await params;
-        const supabase = await createClient();
+        const supabase = await createAnonClient();
         const { data, error } = await supabase
             .from("recipes")
             .select(`

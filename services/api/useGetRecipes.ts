@@ -2,8 +2,27 @@ import { Recipe } from "@/app/api/datamodel";
 import { useQuery } from "@tanstack/react-query";
 
 
-const fetchRecipes = async (searchTerm: string = ''): Promise<Recipe[]> => {
-    const response = await fetch(`/api/recipes?search=${encodeURIComponent(searchTerm)}`, {
+type RecipeSearchParams = {
+    searchTerm?: string;
+    withinWeek?: boolean;
+    page?: number;
+    pageSize?: number;
+}
+
+interface RecipeResponse {
+    recipes: Recipe[];
+    count: number;
+}
+
+const fetchRecipes = async ({ searchTerm, withinWeek, page = 1, pageSize = 12 }: RecipeSearchParams): Promise<RecipeResponse> => {
+    const params = new URLSearchParams({
+        search: searchTerm ?? '',
+        withinWeek: withinWeek?.toString() ?? '',
+        page: page.toString(),
+        pageSize: pageSize.toString()
+    });
+
+    const response = await fetch(`/api/recipes?${params.toString()}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -14,13 +33,12 @@ const fetchRecipes = async (searchTerm: string = ''): Promise<Recipe[]> => {
         throw new Error('Failed to fetch recipes');
     }
 
-    const data = await response.json();
-    return data.recipes;
+    return await response.json();
 };
 
-export const useGetRecipes = (searchTerm: string = '') => {
+export const useGetRecipes = ({ searchTerm, withinWeek, page, pageSize }: RecipeSearchParams) => {
     return useQuery({
-        queryKey: ['recipes', searchTerm],
-        queryFn: () => fetchRecipes(searchTerm),
+        queryKey: ['recipes', searchTerm, withinWeek, page, pageSize],
+        queryFn: () => fetchRecipes({ searchTerm, withinWeek, page, pageSize }),
     });
 }; 
