@@ -4,7 +4,10 @@ import RecipeGrid from "@/app/(public)/recipes/components/RecipeGrid";
 import { useGetRecipes } from "@/services/api/protected/useGetRecipes";
 
 export default function HomePage() {
-  const { data: recipes = [], isFetching } = useGetRecipes("", true);
+  const { data: recipes = [], isFetching } = useGetRecipes({
+    searchTerm: "",
+    withinWeek: true,
+  });
 
   return (
     <div className="container mx-auto px-4 py-8">

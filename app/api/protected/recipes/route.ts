@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 
 
 export async function GET(request: Request) {
+    console.log("GET request received");
     try {
         const { searchParams } = new URL(request.url);
         const search = searchParams.get('search') || '';
@@ -25,22 +26,27 @@ export async function GET(request: Request) {
         }
 
         if (withinWeek) {
-            const today = new Date();
+            /*  const today = new Date();
+ 
+             // Get last Sunday (end of previous week)
+             const lastSunday = new Date(today);
+             lastSunday.setDate(today.getDate() - today.getDay() - 1);
+             lastSunday.setHours(23, 59, 59, 999); // End of day
+ 
+             // Get last Monday (start of previous week)
+             const lastMonday = new Date(lastSunday);
+             lastMonday.setDate(lastSunday.getDate() - 6);
+             lastMonday.setHours(0, 0, 0, 0); // Start of day
+ 
+ 
+             query = query
+                 .gte("created_at", lastMonday.toISOString())
+                 .lte("created_at", lastSunday.toISOString()); */
+            query = query.order("created_at", { ascending: false })
 
-            // Get last Sunday (end of previous week)
-            const lastSunday = new Date(today);
-            lastSunday.setDate(today.getDate() - today.getDay() - 1);
-            lastSunday.setHours(23, 59, 59, 999); // End of day
-
-            // Get last Monday (start of previous week)
-            const lastMonday = new Date(lastSunday);
-            lastMonday.setDate(lastSunday.getDate() - 6);
-            lastMonday.setHours(0, 0, 0, 0); // Start of day
+            query = query.limit(3);
 
 
-            query = query
-                .gte("created_at", lastMonday.toISOString())
-                .lte("created_at", lastSunday.toISOString());
         }
 
         const { data, error, count } = await query;

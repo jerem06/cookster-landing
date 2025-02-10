@@ -8,7 +8,9 @@ import heroRecipe from "@/app/assets/images/recipeHeader.jpg";
 
 export default function CooksterRecipesPage() {
   const [searchQuery, setSearchQuery] = useState("");
-  const { data: recipes, isFetching } = useGetRecipes(searchQuery);
+  const { data: recipes, isFetching } = useGetRecipes({
+    searchTerm: searchQuery,
+  });
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);

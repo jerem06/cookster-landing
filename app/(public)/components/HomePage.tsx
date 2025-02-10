@@ -65,7 +65,7 @@ const HomePage: React.FC = () => {
                 </div>
 
                 <div className="gap-6 flex flex-col md:flex-row items-center order-1 md:order-2">
-                  <AvatarCircles avatarUrls={avatars} numPeople={10} />
+                  <AvatarCircles avatarUrls={avatars} numPeople={99} />
                   <div>
                     <div className="flex items-center">
                       {[...Array(5)].map((_, index) => (
@@ -76,7 +76,7 @@ const HomePage: React.FC = () => {
                       ))}
                     </div>
                     <p className="mt-2 text-gray-600">
-                      10+ utilisateurs cuisinent avec Cookster
+                      L&apos;app tout en un pour cuisiner
                     </p>
                   </div>
                 </div>
