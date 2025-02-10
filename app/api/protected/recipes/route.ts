@@ -8,6 +8,8 @@ export async function GET(request: Request) {
         const { searchParams } = new URL(request.url);
         const search = searchParams.get('search') || '';
         const withinWeek = searchParams.get('withinWeek') === 'true';
+        const page = parseInt(searchParams.get('page') || '1');
+        const pageSize = parseInt(searchParams.get('pageSize') || '12');
 
         const supabase = await createAnonClient();
         let query = supabase
@@ -19,7 +21,8 @@ export async function GET(request: Request) {
                     language_code
                 )
             `, { count: 'exact' })
-            .eq('public', true);
+            .eq('public', true)
+            .range((page - 1) * pageSize, page * pageSize - 1);
 
         if (search) {
             query = query.ilike("recipe_translations.title", `%${search}%`);
