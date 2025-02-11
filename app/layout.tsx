@@ -18,7 +18,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Cookster - Aggrégateur de recettes et liste de courses automatique",
+  title:
+    "Cookster - Livre de recettes numérique et liste de courses automatique",
   description:
     "Découvrez, créez et partagez de délicieuses recettes avec Cookster. Votre application mobile incontournable pour la cuisine, la planification des repas et liste de courses automatique.",
   keywords: [
