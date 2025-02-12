@@ -74,6 +74,17 @@ export function Navbar() {
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
+          <NavigationMenu>
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <Link href="/articles" legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    Articles
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
           <Button onClick={() => router.push("/auth")}>Se connecter</Button>
         </div>
 
@@ -101,6 +112,13 @@ export function Navbar() {
               onClick={() => setIsMenuOpen(false)}
             >
               Recettes
+            </Link>
+            <Link
+              href="/articles"
+              className="text-lg font-semibold hover:text-primary"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Articles
             </Link>
             <Button
               onClick={() => {

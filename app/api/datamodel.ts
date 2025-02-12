@@ -131,3 +131,32 @@ export interface UserRecipe {
     to_try: boolean;
     recipe: Recipe;
 }
+
+export interface ArticleCategoryTranslation extends BaseTranslation {
+    name: string;
+    description: string;
+}
+
+export interface ArticleCategory {
+    id: number;
+    category_order: number;
+    translations: TranslationMap<ArticleCategoryTranslation>;
+}
+
+export interface ArticleTranslation extends BaseTranslation {
+    title: string;
+    content: string;
+    meta_description: string;
+    meta_title: string;
+}
+
+export interface Article {
+    id: string;
+    article_url: string;
+    image_url: string | null;
+    public: boolean;
+    created_at: Date;
+    updated_at: Date;
+    translations: TranslationMap<ArticleTranslation>;
+    categories?: ArticleCategory[];
+}

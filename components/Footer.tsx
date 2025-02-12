@@ -71,14 +71,14 @@ export function Footer() {
                   Recettes
                 </Link>
               </li>
-              {/*  <li>
+              <li>
                 <Link
-                  href="/"
+                  href="/articles"
                   className="text-sm text-muted-foreground hover:text-primary"
                 >
                   Articles
                 </Link>
-              </li> */}
+              </li>
             </ul>
           </div>
 
